@@ -1,0 +1,68 @@
+.regular-table {
+	border-style: solid;
+	border-width: 2px;
+	border-color: black;
+	padding: 3px;
+	width: 100%;
+	font-size: 14px;
+}
+
+
+.regular-table td {
+	border-style: solid;
+	border-width: 1px;
+	border-color: black;
+		padding: 3px;
+	
+}
+
+.aircraft-data-table {
+	margin-left: 0px;
+	margin-right: 0px;
+	width: 100%;	
+}
+
+.aircraft-data-table td {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.headers {
+	background-color: #ddd
+}
+
+.yellow-warning {
+	background-color: yellow;
+}
+
+.red-warning {
+	background-color: red;
+}
+
+.airframe-headers {
+	background-color: green;
+}
+
+.engine-headers {
+	background-color: orange;
+}
+
+.propeller-headers {
+	background-color: blue;
+}
+
+.displayPartData {
+	
+}
+
+.doNotDisplayPartData {
+	display: none;
+}
+
+.visibleSection {
+	
+}
+
+.notVisibleSection {
+	display: none;
+}

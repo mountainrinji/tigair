@@ -1,0 +1,1 @@
+var TigairApp = angular.module('TigairApp', ['TigairApp.controllers', 'TigairApp.services', 'pascalprecht.translate']);

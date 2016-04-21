@@ -1,0 +1,54 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  
+  <!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+<context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>/WEB-INF/classes/pl/mountainrinji/spring/application-context.xml</param-value>
+</context-param>
+
+<!-- Creates the Spring Container shared by all Servlets and Filters -->
+<listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+</listener>
+
+  <servlet>
+    <servlet-name>jersey-serlvet</servlet-name>
+
+    <servlet-class>
+        com.sun.jersey.spi.container.servlet.ServletContainer
+    </servlet-class>
+
+    <init-param>
+        <param-name>com.sun.jersey.config.property.packages</param-name>
+        <param-value>pl.mountainrinji.rest</param-value>
+    </init-param>
+
+    <init-param>
+        <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+        <param-value>true</param-value>
+    </init-param>
+
+    <load-on-startup>1</load-on-startup>
+</servlet>
+
+
+<servlet-mapping>
+    <servlet-name>jersey-serlvet</servlet-name>
+    <url-pattern>/rest/*</url-pattern>
+</servlet-mapping>
+
+
+<!--filter>
+   <filter-name>CamoAuthenticationFilter</filter-name>
+   <filter-class>pl.mountainrinji.security.CamoAuthenticationFilter</filter-class>
+</filter>
+<filter-mapping>
+   <filter-name>CamoAuthenticationFilter</filter-name>
+   <url-pattern>/*</url-pattern>
+</filter-mapping-->
+</web-app>

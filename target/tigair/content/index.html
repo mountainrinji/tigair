@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="TigairApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="TigairApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="TigairApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="TigairApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>My AngularJS App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+  <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+  
+  <link rel="stylesheet" href="css/tigair.css">
+</head>
+<body>
+  
+
+  
+<body ng-app="TigairApp" ng-controller="indexController" >
+
+	This is Tigair application - version: {{appVersion}}
+	<br>
+	Activities status is: {{activitiesStatus}}
+	<br>
+	Java activities status is: {{javaActivitiesStatus}}
+	<br>
+	{{aircraftActivitiesExecution[0].aircraft_name}}
+	
+	<br>
+	--------------------------------------------------
+	<br>
+	
+	Aircraft: {{aircraftData.name}}
+	
+	
+
+<h2>{{ 'HEADLINE' | translate }}</h2>
+<p>{{ 'INTRO_TEXT' | translate }}</p>
+<h2>{{ 'HEADLINE' | translate }}</h2>
+<p>{{ 'INTRO_TEXT' | translate }}</p>
+
+
+	
+	<table class="regular-table">
+	<thead class="headers">
+		<tr><th colspan="17">
+			
+			{{aircraftData.name}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; STATUS OBSLUGOWY SAMOLOTU &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{currentDate.toLocaleDateString("pl-PL")}}
+			<table class="aircraft-data-table">
+				<tr>
+					<td>{{'aircraftdata_aircraft' | translate}} {{aircraftData.make}}</td>
+					<td>{{'aircraftdata_serialno' | translate}} {{aircraftData.serialNo}}</td>
+					<td>{{'aircraftdata_manufacturedDate' | translate}} {{aircraftData.manufacturedDate}}</td>
+					<td>{{'aircraftdata_typeCertificate' | translate}} {{aircraftData.typeCertificate}}</td>
+				</tr>
+			</table>
+		
+		</th></tr>
+	</thead>
+    <thead class="airframe-headers">
+    <tr>
+    	<th colspan="17">
+    		{{'airframe' | translate}}
+    	</th>
+    </tr>
+      <tr>
+      	<td> {{'activityStatusTable_lp' | translate }} </td>
+      	<td> {{'activityStatusTable_activityName' | translate }} </td>
+      	<td> {{'activityStatusTable_activityType' | translate }} </td>
+      	<td> {{'activityStatusTable_hoursInterval' | translate }} </td>
+      	<td> {{'activityStatusTable_calendarInterval' | translate }} </td>
+      	<td> {{'activityStatusTable_cyclesInterval' | translate }} </td>
+      	<td> {{'activityStatusTable_executedHours' | translate }} </td>
+      	<td> {{'activityStatusTable_executedDate' | translate }} </td>
+      	<td> {{'activityStatusTable_executedCycles' | translate }} </td>
+      	<td> {{'activityStatusTable_dueHours' | translate }} </td>
+      	<td> {{'activityStatusTable_dueDate' | translate }} </td>
+      	<td> {{'activityStatusTable_dueCycles' | translate }} </td>
+      	<td> {{'activityStatusTable_hoursLeft' | translate }} </td>
+      	<td> {{'activityStatusTable_daysLeft' | translate }} </td>
+      	<td> {{'activityStatusTable_cyclesLeft' | translate }} </td>
+      	<td> {{'activityStatusTable_crs' | translate }} </td>
+      	<td> {{'activityStatusTable_additionalNotes' | translate }} </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="activityExecution in aircraftActivitiesExecutionAMAINT" class="{{activityExecution.rowConfiguration.rowClass}}">
+        <td>{{$index + 1}}</td>
+        <td>
+          
+          {{activityExecution.activity.root.activityName}}
+        </td>
+        <td>
+          
+          {{ activityExecution.activity.actionTypeStr | translate}}
+        </td>
+        <td>
+          
+          {{activityExecution.activity.hoursIntervalStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.activity.calendarIntervalStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.activity.cyclesIntervalStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.root.executedHours}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.executedDateStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.executedCyclesStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.nextExecutionHoursStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.nextExecutionDateStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.nextExecutionCyclesStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.hoursLeftStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.daysLeftStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.cyclesLeftStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.root.crs}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.root.additionalNotes}}
+        </td>
+      </tr>
+    </tbody>
+    <thead class="engine-headers">
+    <tr>
+    	<th colspan="17">
+    		{{'engine' | translate}}
+    	</th>
+    </tr>
+    <tr>
+    	<th colspan="4">
+    		{{'engine_model' | translate}}
+    	</th>
+    	<th colspan="4">
+    		{{'engine_serialNo' | translate}}
+    	</th>
+    	<th colspan="3">
+    		{{'engine_manufacturedYear' | translate}}
+    	</th>
+    	<th colspan="3">
+    		{{'engine_certificationType' | translate}}
+    	</th>
+    	<th colspan="3">
+    		{{'engine_timeSinceOH' | translate}}
+    	</th>
+    </tr>
+      <tr>
+      	<td> {{'activityStatusTable_lp' | translate }} </td>
+      	<td> {{'activityStatusTable_activityName' | translate }} </td>
+      	<td> {{'activityStatusTable_activityType' | translate }} </td>
+      	<td> {{'activityStatusTable_hoursInterval' | translate }} </td>
+      	<td> {{'activityStatusTable_calendarInterval' | translate }} </td>
+      	<td> {{'activityStatusTable_cyclesInterval' | translate }} </td>
+      	<td> {{'activityStatusTable_executedHours' | translate }} </td>
+      	<td> {{'activityStatusTable_executedDate' | translate }} </td>
+      	<td> {{'activityStatusTable_executedCycles' | translate }} </td>
+      	<td> {{'activityStatusTable_dueHours' | translate }} </td>
+      	<td> {{'activityStatusTable_dueDate' | translate }} </td>
+      	<td> {{'activityStatusTable_dueCycles' | translate }} </td>
+      	<td> {{'activityStatusTable_hoursLeft' | translate }} </td>
+      	<td> {{'activityStatusTable_daysLeft' | translate }} </td>
+      	<td> {{'activityStatusTable_cyclesLeft' | translate }} </td>
+      	<td> {{'activityStatusTable_crs' | translate }} </td>
+      	<td> {{'activityStatusTable_additionalNotes' | translate }} </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="activityExecution in aircraftActivitiesExecutionAMAINT" class="{{activityExecution.rowConfiguration.rowClass}}">
+        <td>{{$index + 1}}</td>
+        <td>
+          
+          {{activityExecution.activity.root.activityName}}
+        </td>
+        <td>
+          
+          {{ activityExecution.activity.actionTypeStr | translate}}
+        </td>
+        <td>
+          
+          {{activityExecution.activity.hoursIntervalStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.activity.calendarIntervalStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.activity.cyclesIntervalStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.root.executedHours}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.executedDateStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.executedCyclesStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.nextExecutionHoursStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.nextExecutionDateStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.nextExecutionCyclesStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.hoursLeftStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.daysLeftStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.cyclesLeftStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.root.crs}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.root.additionalNotes}}
+        </td>
+      </tr>
+    </tbody>
+     <thead class="propeller-headers">
+    <tr>
+    	<th colspan="17">
+    		{{'propeller' | translate}}
+    	</th>
+    </tr>
+    <tr>
+    	<th colspan="4">
+    		{{'propeller_model' | translate}}
+    	</th>
+    	<th colspan="4">
+    		{{'propeller_serialNo' | translate}}
+    	</th>
+    	<th colspan="3">
+    		{{'propeller_manufacturedYear' | translate}}
+    	</th>
+    	<th colspan="3">
+    		{{'propeller_certificationType' | translate}}
+    	</th>
+    	<th colspan="3">
+    		{{'propeller_timeSinceOH' | translate}}
+    	</th>
+    </tr>
+      <tr>
+      	<td> {{'activityStatusTable_lp' | translate }} </td>
+      	<td> {{'activityStatusTable_activityName' | translate }} </td>
+      	<td> {{'activityStatusTable_activityType' | translate }} </td>
+      	<td> {{'activityStatusTable_hoursInterval' | translate }} </td>
+      	<td> {{'activityStatusTable_calendarInterval' | translate }} </td>
+      	<td> {{'activityStatusTable_cyclesInterval' | translate }} </td>
+      	<td> {{'activityStatusTable_executedHours' | translate }} </td>
+      	<td> {{'activityStatusTable_executedDate' | translate }} </td>
+      	<td> {{'activityStatusTable_executedCycles' | translate }} </td>
+      	<td> {{'activityStatusTable_dueHours' | translate }} </td>
+      	<td> {{'activityStatusTable_dueDate' | translate }} </td>
+      	<td> {{'activityStatusTable_dueCycles' | translate }} </td>
+      	<td> {{'activityStatusTable_hoursLeft' | translate }} </td>
+      	<td> {{'activityStatusTable_daysLeft' | translate }} </td>
+      	<td> {{'activityStatusTable_cyclesLeft' | translate }} </td>
+      	<td> {{'activityStatusTable_crs' | translate }} </td>
+      	<td> {{'activityStatusTable_additionalNotes' | translate }} </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="activityExecution in aircraftActivitiesExecutionAMAINT" class="{{activityExecution.rowConfiguration.rowClass}}">
+        <td>{{$index + 1}}</td>
+        <td>
+          
+          {{activityExecution.activity.root.activityName}}
+        </td>
+        <td>
+          
+          {{ activityExecution.activity.actionTypeStr | translate}}
+        </td>
+        <td>
+          
+          {{activityExecution.activity.hoursIntervalStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.activity.calendarIntervalStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.activity.cyclesIntervalStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.root.executedHours}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.executedDateStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.executedCyclesStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.nextExecutionHoursStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.nextExecutionDateStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.nextExecutionCyclesStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.hoursLeftStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.daysLeftStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.cyclesLeftStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.root.crs}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.root.additionalNotes}}
+        </td>
+      </tr>
+    </tbody>
+    <activitiesExecutionTable aircraftActivitiesExecution="{{aircraftActivitiesExecutionAMAINT}}"></activitiesExecutionTable>
+  </table>
+</body>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-translate/angular-translate.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/translations.js"></script>
+  <script src="js/components/activities_execution_table.js"></script>
+</body>
+</html>

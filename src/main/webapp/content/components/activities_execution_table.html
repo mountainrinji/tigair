@@ -1,0 +1,122 @@
+
+<table class="regular-table">
+<thead class="{{headerCss}}">
+    <tr>
+    	<th colspan="17">
+    		{{part | translate}}
+    	</th>
+    </tr>
+    <tr class="{{partDataVisibilityCss}}">
+    	<th colspan="3">
+    		{{'part_model' | translate}} {{partData.model}}
+    	</th>
+    	<th colspan="2">
+    		{{'part_serialNo' | translate}} {{partData.serialNo}}
+    	</th>
+    	<th colspan="3">
+    		{{'part_manufacturedYear' | translate}} {{partData.manufacturedYear}}
+    	</th>
+    	<th colspan="3">
+    		{{'part_certificationType' | translate}} {{partData.typeCertificate}}
+    	</th>
+    	<th colspan="3">
+    		{{'part_timeSinceOH' | translate}} {{partData.totalTimeSinceOverhaul}}
+    	</th>
+    	<th colspan="3">
+    		{{'part_totalTime' | translate}} {{partData.totalTime}}
+    	</th>
+    </tr>
+      <tr>
+      	<td> {{'activityStatusTable_lp' | translate }} </td>
+      	<td> {{'activityStatusTable_activityName' | translate }} </td>
+      	<td> {{'activityStatusTable_activityType' | translate }} </td>
+      	<td> {{'activityStatusTable_hoursInterval' | translate }} </td>
+      	<td> {{'activityStatusTable_calendarInterval' | translate }} </td>
+      	<td> {{'activityStatusTable_cyclesInterval' | translate }} </td>
+      	<td> {{'activityStatusTable_additionalNotes' | translate }} </td>
+      	<td> {{'activityStatusTable_crs' | translate }} </td>
+      	<td> {{'activityStatusTable_executedHours' | translate }} </td>
+      	<td> {{'activityStatusTable_executedDate' | translate }} </td>
+      	<td> {{'activityStatusTable_executedCycles' | translate }} </td>
+      	<td> {{'activityStatusTable_dueHours' | translate }} </td>
+      	<td> {{'activityStatusTable_dueDate' | translate }} </td>
+      	<td> {{'activityStatusTable_dueCycles' | translate }} </td>
+      	<td> {{'activityStatusTable_hoursLeft' | translate }} </td>
+      	<td> {{'activityStatusTable_daysLeft' | translate }} </td>
+      	<td> {{'activityStatusTable_cyclesLeft' | translate }} </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="activityExecution in aircraftActivitiesExecution" class="{{activityExecution.rowConfiguration.rowClass}}">
+        <td>{{$index + 1}}</td>
+        <td>
+          
+          {{activityExecution.activity.root.activityName}}
+        </td>
+        <td>
+          
+          {{ activityExecution.activity.actionTypeStr | translate}}
+        </td>
+        <td class="{{activityExecution.activity.usualIntervalColumnCss}}">
+          
+          {{activityExecution.activity.hoursIntervalStr}}
+        </td>
+        <td class="{{activityExecution.activity.usualIntervalColumnCss}}">
+          
+          {{activityExecution.activity.calendarIntervalStr}}
+        </td>
+        <td class="{{activityExecution.activity.usualIntervalColumnCss}}">
+          
+          {{activityExecution.activity.cyclesIntervalStr}}
+        </td>
+        <td class="{{activityExecution.activity.specialIntervalColumnCss}}" colspan="3">
+          
+          {{activityExecution.activity.root.specialInterval}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.root.additionalNotes}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.root.crs}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.root.executedHours}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.executedDateStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.executedCyclesStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.nextExecutionHoursStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.nextExecutionDateStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.nextExecutionCyclesStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.hoursLeftStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.daysLeftStr}}
+        </td>
+        <td>
+          
+          {{activityExecution.aircraftActivityStatus.cyclesLeftStr}}
+        </td>
+      </tr>
+    </tbody>
+    </table>
