@@ -1,15 +1,17 @@
 
-app.config(function($translateProvider) {
+TigairApp.config(function($translateProvider) {
   $translateProvider.translations('en', {
 	  aircraftdata_aircraft: 'Aircraft: ',
     HEADLINE: 'Hello there, This is my awesome app!',
     INTRO_TEXT: 'And it has i18n support!'
   })
   .translations('pl', {
+	aircraftdata_statusObslugowy: 'STATUS OBSŁUGOWY SAMOLOTU',
     aircraftdata_aircraft: 'Samolot: ',
     aircraftdata_serialno: 'Nr. fabryczny: ',
     aircraftdata_manufacturedDate: 'Data produkcji: ',
     aircraftdata_typeCertificate: 'Certyfikat typu: ',
+    aircraftdata_totalTime: 'Nalot',
     
     activityStatusTable_lp: 'Lp',
     activityStatusTable_activityName: 'Paczka obsługowa/SB/AD',
@@ -50,7 +52,15 @@ app.config(function($translateProvider) {
     propeller_serialNo: 'Nr fabryczny: ',
     propeller_manufacturedYear: 'Rok produkcji: ',
     propeller_certificationType: 'Certyfikat typu: ',
-    propeller_timeSinceOH: 'Nalot: '
+    propeller_timeSinceOH: 'Nalot od naprawy głównej: ',
+    propeller_totalTime: 'Nalot całkowity:',
+    
+    part_model: 'Model: ',
+    part_serialNo: 'Nr fabryczny: ',
+    part_manufacturedYear: 'Rok produkcji: ',
+    part_certificationType: 'Certyfikat typu: ',
+    part_timeSinceOH: 'Nalot od naprawy głównej: ',
+    part_totalTime: 'Nalot całkowity: '
     	
   });
   

@@ -27,7 +27,7 @@ public class AircraftActivityStatusDisplayData {
 	private String cyclesLeftStr = "";
 	
 	// For styling purposes:
-	private Integer hoursLeft = Integer.MAX_VALUE;
+	private long hoursLeftInMillis = 30000 * 60 * 60 * 1000;
 	private Integer daysLeft = Integer.MAX_VALUE;
 	private Integer cyclesLeft = Integer.MAX_VALUE;
 	
@@ -89,12 +89,12 @@ public class AircraftActivityStatusDisplayData {
 		this.cyclesLeftStr = cyclesLeftStr;
 	}
 
-	public Integer getHoursLeft() {
-		return hoursLeft;
+	public long getHoursLeft() {
+		return hoursLeftInMillis;
 	}
 
-	public void setHoursLeft(Integer hoursLeft) {
-		this.hoursLeft = hoursLeft;
+	public void setHoursLeft(long hoursLeftIMillis) {
+		this.hoursLeftInMillis = hoursLeftIMillis;
 	}
 
 	public Integer getDaysLeft() {
@@ -147,17 +147,29 @@ public class AircraftActivityStatusDisplayData {
 		executedDateStr = Utils.convertDate(root.getExecutedDate());
 		executedCyclesStr = Utils.getDifferenceBetweenObjects(root.getExecutedCycles(), 0);
 		nextExecutionHoursStr = root.getActivity().getHoursInterval() != null ? 
-				Utils.getDifferenceBetweenObjects(root.getNextExecutionHours(), 0) : "---";
+				root.getNextExecutionHours() : "---";
 		nextExecutionDateStr = root.getActivity().getCalendarInterval() != null ?
 				Utils.convertDate(root.getNextExecutionDate()) : "---";
 		nextExecutionCyclesStr = root.getActivity().getCyclesInterval() != null ?
 				Utils.getDifferenceBetweenObjects(root.getNextExecutionCycles(), 0) : "---";
 		hoursLeftStr = root.getActivity().getHoursInterval() != null ? 
-				Utils.getDifferenceBetweenObjects(root.getNextExecutionHours(), root.getAircraft().getTotalTime()) : "---";
+				Utils.substractTimes(root.getNextExecutionHours(), root.getAircraft().getTotalTime()) : "---";
 		daysLeftStr = root.getActivity().getCalendarInterval() != null ?
 				Utils.getDifferenceBetweenObjects(root.getNextExecutionDate(), new Date()) : "---";
 		cyclesLeftStr = root.getActivity().getCyclesInterval() != null ?
 				Utils.getDifferenceBetweenObjects(root.getNextExecutionCycles(), root.getAircraft().getTotalCycles()) : "---";
+				
+		if (root.getActivity().getHoursInterval() != null) {
+			hoursLeftInMillis = Utils.getMillisFromTime(hoursLeftStr);
+		}
+		
+		if (root.getActivity().getCalendarInterval() != null) {
+			daysLeft = Integer.parseInt(daysLeftStr);
+		}
+		
+		if (root.getActivity().getCyclesInterval() != null) {
+			cyclesLeft = Integer.parseInt(cyclesLeftStr);
+		}
 		
 		return this;
 	}

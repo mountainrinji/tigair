@@ -1,1 +1,1 @@
-var app = angular.module('TigairApp', ['TigairApp.controllers', 'TigairApp.services', 'pascalprecht.translate']);
+var TigairApp = angular.module('TigairApp', ['TigairApp.controllers', 'TigairApp.services', 'pascalprecht.translate']);

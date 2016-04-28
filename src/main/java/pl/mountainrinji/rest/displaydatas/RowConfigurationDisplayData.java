@@ -2,8 +2,8 @@ package pl.mountainrinji.rest.displaydatas;
 
 public class RowConfigurationDisplayData {
 
-	private static Integer YELLOW_TRESHHOLD_HOURS = 10;
-	private static Integer RED_TRESHHOLD_HOURS = 5;
+	private static Integer YELLOW_TRESHHOLD_HOURS = 10 * 60 * 60 * 1000;
+	private static Integer RED_TRESHHOLD_HOURS = 5 * 60 * 60 * 1000;
 	
 	private static Integer YELLOW_TRESHHOLD_DAYS = 30;
 	private static Integer RED_TRESHHOLD_DAYS = 10;

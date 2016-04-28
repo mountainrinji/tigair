@@ -1,6 +1,7 @@
 package pl.mountainrinji.db.entities;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -34,7 +35,7 @@ public class AircraftActivityStatus implements Serializable {
 	private Date executedDate;
 
 	@Column(name="executed_hours")
-	private Integer executedHours;
+	private String executedHours;
 
 	@Column(name="extension_calendar")
 	private Integer extensionCalendar;
@@ -53,7 +54,7 @@ public class AircraftActivityStatus implements Serializable {
 	private Date nextExecutionDate;
 
 	@Column(name="next_execution_hours")
-	private Integer nextExecutionHours;
+	private String nextExecutionHours;
 
 	@Column(name="serial_no")
 	private String serialNo;
@@ -111,11 +112,11 @@ public class AircraftActivityStatus implements Serializable {
 		this.executedDate = executedDate;
 	}
 
-	public Integer getExecutedHours() {
+	public String getExecutedHours() {
 		return this.executedHours;
 	}
 
-	public void setExecutedHours(Integer executedHours) {
+	public void setExecutedHours(String executedHours) {
 		this.executedHours = executedHours;
 	}
 
@@ -159,11 +160,11 @@ public class AircraftActivityStatus implements Serializable {
 		this.nextExecutionDate = nextExecutionDate;
 	}
 
-	public Integer getNextExecutionHours() {
+	public String getNextExecutionHours() {
 		return this.nextExecutionHours;
 	}
 
-	public void setNextExecutionHours(Integer nextExecutionHours) {
+	public void setNextExecutionHours(String nextExecutionHours) {
 		this.nextExecutionHours = nextExecutionHours;
 	}
 

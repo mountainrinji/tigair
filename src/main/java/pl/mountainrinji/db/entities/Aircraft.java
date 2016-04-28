@@ -1,6 +1,7 @@
 package pl.mountainrinji.db.entities;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 
 import org.hibernate.annotations.Fetch;
@@ -40,7 +41,7 @@ public class Aircraft implements Serializable {
 	private String typeCertificate;
 	
 	@Column(name="total_time")
-	private Integer totalTime;
+	private String totalTime;
 	
 	@Column(name="total_cycles")
 	private Integer totalCycles;
@@ -58,10 +59,10 @@ public class Aircraft implements Serializable {
 	private String engineTypeCertificate;
 	
 	@Column(name="engine_total_time")
-	private Integer engineTotalTime;
+	private String engineTotalTime;
 	
 	@Column(name="engine_time_since_overhaul")
-	private Integer engineTimeSinceOverhaul;
+	private String engineTimeSinceOverhaul;
 	
 	@Column(name="propeller_model")
 	private String propellerModel;
@@ -76,10 +77,10 @@ public class Aircraft implements Serializable {
 	private String propellerTypeCertificate;
 	
 	@Column(name="propeller_total_time")
-	private Integer propellerTotalTime;
+	private String propellerTotalTime;
 	
 	@Column(name="propeller_time_since_overhaul")
-	private Integer propellerTimeSinceOverhaul;
+	private String propellerTimeSinceOverhaul;
 
 	//bi-directional many-to-one association to AircraftActivityStatus
 	@OneToMany(mappedBy="aircraft")
@@ -153,11 +154,11 @@ public class Aircraft implements Serializable {
 		this.aircraftActivityStatuses = aircraftActivityStatuses;
 	}
 
-	public Integer getTotalTime() {
+	public String getTotalTime() {
 		return totalTime;
 	}
 
-	public void setTotalTime(Integer totalTime) {
+	public void setTotalTime(String totalTime) {
 		this.totalTime = totalTime;
 	}
 	
@@ -205,19 +206,19 @@ public class Aircraft implements Serializable {
 		this.engineTypeCertificate = engineTypeCertificate;
 	}
 
-	public Integer getEngineTotalTime() {
+	public String getEngineTotalTime() {
 		return engineTotalTime;
 	}
 
-	public void setEngineTotalTime(Integer engineTotalTime) {
+	public void setEngineTotalTime(String engineTotalTime) {
 		this.engineTotalTime = engineTotalTime;
 	}
 
-	public Integer getEngineTimeSinceOverhaul() {
+	public String getEngineTimeSinceOverhaul() {
 		return engineTimeSinceOverhaul;
 	}
 
-	public void setEngineTimeSinceOverhaul(Integer engineTimeSinceOverhaul) {
+	public void setEngineTimeSinceOverhaul(String engineTimeSinceOverhaul) {
 		this.engineTimeSinceOverhaul = engineTimeSinceOverhaul;
 	}
 
@@ -253,19 +254,19 @@ public class Aircraft implements Serializable {
 		this.propellerTypeCertificate = propellerTypeCertificate;
 	}
 
-	public Integer getPropellerTotalTime() {
+	public String getPropellerTotalTime() {
 		return propellerTotalTime;
 	}
 
-	public void setPropellerTotalTime(Integer propellerTotalTime) {
+	public void setPropellerTotalTime(String propellerTotalTime) {
 		this.propellerTotalTime = propellerTotalTime;
 	}
 
-	public Integer getPropellerTimeSinceOverhaul() {
+	public String getPropellerTimeSinceOverhaul() {
 		return propellerTimeSinceOverhaul;
 	}
 
-	public void setPropellerTimeSinceOverhaul(Integer propellerTimeSinceOverhaul) {
+	public void setPropellerTimeSinceOverhaul(String propellerTimeSinceOverhaul) {
 		this.propellerTimeSinceOverhaul = propellerTimeSinceOverhaul;
 	}
 

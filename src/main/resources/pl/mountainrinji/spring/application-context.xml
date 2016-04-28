@@ -50,4 +50,56 @@ http://www.springframework.org/schema/tx
  
 	<!-- bean id="userService" class="pl.mountainrinji.UserService"/>
 	<bean id="annotateDrivenDAO" class="pl.mountainrinji.db.AnnotateDrivenDAO"/-->
+	
+	
+	<!-- QUARTZ -->
+	
+	<bean name="updateFlightsQuartzBean" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+	
+		<property name="jobClass" value="pl.mountainrinji.quartz.UpdateFlightsQuartzBean" />	
+		<property name="durability" value="true" />
+		
+	</bean>
+	
+	<bean name="checkStatusQuartzBean" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+	
+		<property name="jobClass" value="pl.mountainrinji.quartz.CheckStatusQuartzBean" />	
+		<property name="durability" value="true" />
+		
+	</bean>
+	
+	<bean id="updateFlightsQuartTrigger" 
+                class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+		
+		<property name="jobDetail" ref="updateFlightsQuartzBean" />
+		<property name="repeatInterval" value="5000" />
+		<property name="startDelay" value="1000" />
+		
+	</bean>
+	
+	<bean id="checkStatusQuartTrigger" 
+                class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+		
+		<property name="jobDetail" ref="checkStatusQuartzBean" />
+		<property name="repeatInterval" value="20000" />
+		<property name="startDelay" value="1000" />
+		
+	</bean>
+	
+		<!-- Scheduler factory bean to glue together jobDetails and triggers to Configure Quartz Scheduler -->
+<bean  class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+    <property name="jobDetails">
+        <list>
+            <ref bean="updateFlightsQuartzBean" />
+            <ref bean="checkStatusQuartzBean" />
+        </list>
+    </property>
+ 
+    <property name="triggers">
+        <list>
+            <ref bean="updateFlightsQuartTrigger" />
+            <ref bean="checkStatusQuartTrigger" />
+        </list>
+    </property>
+</bean>
 </beans>

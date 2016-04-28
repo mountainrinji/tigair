@@ -6,13 +6,13 @@ public class Part {
 	private String serialNo;
 	private String manufacturedYear;
 	private String typeCertificate;
-	private Integer totalTime;
-	private Integer totalTimeSinceOverhaul;
+	private String totalTime;
+	private String totalTimeSinceOverhaul;
 	
 	
 	
-	public Part(String model, String serialNo, String manufacturedYear, String typeCertificate, Integer totalTime,
-			Integer totalTimeSinceOverhaul) {
+	public Part(String model, String serialNo, String manufacturedYear, String typeCertificate, String totalTime,
+			String totalTimeSinceOverhaul) {
 		super();
 		this.model = model;
 		this.serialNo = serialNo;
@@ -45,16 +45,16 @@ public class Part {
 	public void setTypeCertificate(String typeCertificate) {
 		this.typeCertificate = typeCertificate;
 	}
-	public Integer getTotalTime() {
+	public String getTotalTime() {
 		return totalTime;
 	}
-	public void setTotalTime(Integer totalTime) {
+	public void setTotalTime(String totalTime) {
 		this.totalTime = totalTime;
 	}
-	public Integer getTotalTimeSinceOverhaul() {
+	public String getTotalTimeSinceOverhaul() {
 		return totalTimeSinceOverhaul;
 	}
-	public void setTotalTimeSinceOverhaul(Integer totalTimeSinceOverhaul) {
+	public void setTotalTimeSinceOverhaul(String totalTimeSinceOverhaul) {
 		this.totalTimeSinceOverhaul = totalTimeSinceOverhaul;
 	}
 	

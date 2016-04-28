@@ -3,6 +3,8 @@
 	border-width: 2px;
 	border-color: black;
 	padding: 3px;
+	width: 100%;
+	font-size: 14px;
 }
 
 
@@ -47,4 +49,20 @@
 
 .propeller-headers {
 	background-color: blue;
+}
+
+.displayPartData {
+	
+}
+
+.doNotDisplayPartData {
+	display: none;
+}
+
+.visibleSection {
+	
+}
+
+.notVisibleSection {
+	display: none;
 }

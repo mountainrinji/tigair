@@ -10,6 +10,7 @@ import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -31,5 +32,18 @@ public class AircraftDAO {
 		af.setAircraftActivityStatuses(null);
 		ObjectMapper mapper = new ObjectMapper();
 		return mapper.writeValueAsString(af);
+	}
+	
+	@Transactional
+	public Aircraft getAircraft(String registrationMark) throws JsonProcessingException {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Aircraft.class);
+		criteria.add(Restrictions.eq("name", registrationMark));
+		Aircraft af = (Aircraft) criteria.list().get(0);
+		return af;
+	}
+	
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
+	public void updateAircraft(Aircraft a) {
+		sessionFactory.getCurrentSession().saveOrUpdate(a);
 	}
 }
