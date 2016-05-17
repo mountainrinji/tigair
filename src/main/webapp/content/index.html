@@ -44,21 +44,24 @@
   	header-css="'airframe-headers'" 
   	part-data-visibility-css="'doNotDisplayPartData'" 
   	part="'airframe' | translate"  
+  	show-deprecated="aircraftActivitiesExecutionAMAINT[0].aircraft.showDeprecated"
   	aircraft-activities-execution="aircraftActivitiesExecutionAMAINT">
   </activities_execution_table>
     <activities_execution_table 
   	header-css="'engine-headers'" 
   	part-data-visibility-css="'displayPartData'" 
   	part="'engine' | translate" 
-  	part-data="aircraftActivitiesExecutionAMAINT[0].engine" 
-  	aircraft-activities-execution="aircraftActivitiesExecutionAMAINT">
+  	part-data="aircraftActivitiesExecutionAMAINT[0].engine"
+  	show-deprecated="aircraftActivitiesExecutionAMAINT[0].aircraft.showDeprecated" 
+  	aircraft-activities-execution="aircraftActivitiesExecutionEMAINT">
   </activities_execution_table>    
   <activities_execution_table 
   	header-css="'propeller-headers'" 
   	part-data-visibility-css="'displayPartData'" 
   	part="'propeller' | translate" 
   	part-data="aircraftActivitiesExecutionAMAINT[0].propeller" 
-  	aircraft-activities-execution="aircraftActivitiesExecutionAMAINT">
+  	show-deprecated="aircraftActivitiesExecutionAMAINT[0].aircraft.showDeprecated"
+  	aircraft-activities-execution="aircraftActivitiesExecutionPMAINT">
   </activities_execution_table>
   
 </body>

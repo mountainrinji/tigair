@@ -51,9 +51,10 @@ public class GenericFacade {
     @Path("/getAircraftActivitiesExecution")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAircraftActivitiesExecution(
+    		@QueryParam("regmark") String registrationMark,
     		@QueryParam("activityPart") String activityPart,
     		@QueryParam("activityType") String activityType) throws JSONException, JsonProcessingException {
-    	Response response = Response.ok(getAircraftActivityStatusDAO().getAircraftActivitiesExecution(activityPart, activityType)).build();
+    	Response response = Response.ok(getAircraftActivityStatusDAO().getAircraftActivitiesExecution(registrationMark, activityPart, activityType)).build();
     	return response;
     }
     

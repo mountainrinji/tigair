@@ -41,11 +41,14 @@ public class AircraftActivityStatusDAO {
 	}
 	
 	@Transactional
-	public String getAircraftActivitiesExecution(String activityPart, String activityType) throws JSONException, JsonProcessingException {
+	public String getAircraftActivitiesExecution(String registrationMark, String activityPart, String activityType) throws JSONException, JsonProcessingException {
 		Criteria createCriteria = sessionFactory.getCurrentSession().createCriteria(AircraftActivityStatus.class);
 		createCriteria.createAlias("activity", "activity");
 		createCriteria.add(Restrictions.eq("activity.activityPart", activityPart));
 		createCriteria.add(Restrictions.eq("activity.activityType", activityType));
+		
+		createCriteria.createAlias("aircraft", "aircraft");
+		createCriteria.add(Restrictions.eq("aircraft.name", registrationMark));
 		List<AircraftActivityStatus> list = createCriteria.list();
 		return new ObjectMapper().writeValueAsString((constructResultList(list)));
 	}
@@ -70,6 +73,10 @@ public class AircraftActivityStatusDAO {
 					aas.getAircraft().getPropellerTypeCertificate(), 
 					aas.getAircraft().getPropellerTotalTime(), 
 					aas.getAircraft().getPropellerTimeSinceOverhaul()));
+			
+			if (result.getActivity().getRoot().getDeprecated() == true && result.getAircraft().getRoot().getShowDeprecated() == false) {
+				continue;
+			}
 			convertedList.add(result);
 		}
 		

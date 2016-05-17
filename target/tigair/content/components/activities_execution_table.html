@@ -2,12 +2,12 @@
 <table class="regular-table">
 <thead class="{{headerCss}}">
     <tr>
-    	<th colspan="17">
+    	<th colspan="{{aircraftActivitiesExecution[0].aircraft.colspan}}">
     		{{part | translate}}
     	</th>
     </tr>
     <tr class="{{partDataVisibilityCss}}">
-    	<th colspan="3">
+    	<th colspan="4">
     		{{'part_model' | translate}} {{partData.model}}
     	</th>
     	<th colspan="2">
@@ -22,7 +22,7 @@
     	<th colspan="3">
     		{{'part_timeSinceOH' | translate}} {{partData.totalTimeSinceOverhaul}}
     	</th>
-    	<th colspan="3">
+    	<th colspan="{{aircraftActivitiesExecution[0].aircraft.colspan - 15}}">
     		{{'part_totalTime' | translate}} {{partData.totalTime}}
     	</th>
     </tr>
@@ -30,6 +30,22 @@
       	<td> {{'activityStatusTable_lp' | translate }} </td>
       	<td> {{'activityStatusTable_activityName' | translate }} </td>
       	<td> {{'activityStatusTable_activityType' | translate }} </td>
+      	<td ng-show="aircraftActivitiesExecution[0].aircraft.root.showSource">
+          
+          {{'activityStatusTable_source' | translate }}
+        </td>
+      	<td ng-show="aircraftActivitiesExecution[0].aircraft.root.showDescription">
+          
+          {{'activityStatusTable_description' | translate }}
+        </td>
+        <td ng-show="aircraftActivitiesExecution[0].aircraft.root.showMaintenanceInstruction">
+          
+          {{'activityStatusTable_maintInstruction' | translate }}
+        </td>
+        <td ng-show="aircraftActivitiesExecution[0].aircraft.root.showMaintenanceReference">
+          
+          {{'activityStatusTable_maintReference' | translate }}
+        </td>
       	<td> {{'activityStatusTable_hoursInterval' | translate }} </td>
       	<td> {{'activityStatusTable_calendarInterval' | translate }} </td>
       	<td> {{'activityStatusTable_cyclesInterval' | translate }} </td>
@@ -57,6 +73,25 @@
           
           {{ activityExecution.activity.actionTypeStr | translate}}
         </td>
+        
+        <td ng-show="{{activityExecution.aircraft.root.showSource}}">
+          
+          {{ activityExecution.activity.root.source }}
+        </td>
+        <td ng-show="{{activityExecution.aircraft.root.showDescription}}">
+          
+          {{ activityExecution.activity.root.description }}
+        </td>
+        
+        <td ng-show="{{activityExecution.aircraft.root.showMaintenanceInstruction}}">
+          
+          {{ activityExecution.activity.root.maintenanceInstruction }}
+        </td>
+        <td ng-show="{{activityExecution.aircraft.root.showMaintenanceReference}}">
+          
+          {{ activityExecution.activity.root.maintenanceInstructionRef }}
+        </td>
+        
         <td class="{{activityExecution.activity.usualIntervalColumnCss}}">
           
           {{activityExecution.activity.hoursIntervalStr}}

@@ -43,7 +43,7 @@ public class Activity implements Serializable {
 	private String specialInterval;
 
 	@Column(name="extention_calendar_interval")
-	private Integer extentionCalendarInterval;
+	private Double extentionCalendarInterval;
 
 	@Column(name="extention_cycles_interval")
 	private Integer extentionCyclesInterval;
@@ -62,16 +62,51 @@ public class Activity implements Serializable {
 
 	@Column(name="part_no")
 	private String partNo;
+	
+	@Column(name="deprecated")
+	private Boolean deprecated;
 
 	private String source;
+	
+	@Column(name="description") 
+	private String description;
+
 
 	//bi-directional many-to-one association to AircraftActivityStatus
 	@OneToMany(mappedBy="activity")
 	@JsonIgnore
 	private List<AircraftActivityStatus> aircraftActivityStatuses;
 
+	
+	
+	public String getDescription() {
+		return description;
+	}
+
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+
 	public Activity() {
 	}
+
+	
+	
+	public Boolean getDeprecated() {
+		return deprecated;
+	}
+
+
+
+	public void setDeprecated(Boolean deprecated) {
+		this.deprecated = deprecated;
+	}
+
+
 
 	public Integer getId() {
 		return this.id;
@@ -121,11 +156,11 @@ public class Activity implements Serializable {
 		this.cyclesInterval = cyclesInterval;
 	}
 
-	public Integer getExtentionCalendarInterval() {
+	public Double getExtentionCalendarInterval() {
 		return this.extentionCalendarInterval;
 	}
 
-	public void setExtentionCalendarInterval(Integer extentionCalendarInterval) {
+	public void setExtentionCalendarInterval(Double extentionCalendarInterval) {
 		this.extentionCalendarInterval = extentionCalendarInterval;
 	}
 

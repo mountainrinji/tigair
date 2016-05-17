@@ -16,6 +16,7 @@ public class AircraftActivityStatusDisplayData {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private String taskIdentifier;
 	private AircraftActivityStatus root;
 	private String executedDateStr;
 	private String executedCyclesStr;
@@ -143,6 +144,16 @@ public class AircraftActivityStatusDisplayData {
 		this.nextExecutionHoursStr = nextExecutionHoursStr;
 	}
 
+	
+	
+	public String getTaskIdentifier() {
+		return taskIdentifier;
+	}
+
+	public void setTaskIdentifier(String taskIdentifier) {
+		this.taskIdentifier = taskIdentifier;
+	}
+
 	public AircraftActivityStatusDisplayData calculateValues() {
 		executedDateStr = Utils.convertDate(root.getExecutedDate());
 		executedCyclesStr = Utils.getDifferenceBetweenObjects(root.getExecutedCycles(), 0);
@@ -170,6 +181,8 @@ public class AircraftActivityStatusDisplayData {
 		if (root.getActivity().getCyclesInterval() != null) {
 			cyclesLeft = Integer.parseInt(cyclesLeftStr);
 		}
+		
+		taskIdentifier = Utils.constructActivityId(this);
 		
 		return this;
 	}

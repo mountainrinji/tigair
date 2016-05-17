@@ -81,6 +81,25 @@ public class Aircraft implements Serializable {
 	
 	@Column(name="propeller_time_since_overhaul")
 	private String propellerTimeSinceOverhaul;
+	
+	@Column(name="show_deprecated") 
+	private Boolean showDeprecated;
+	
+	@Column(name="show_description") 
+	private Boolean showDescription;
+	
+	@Column(name="show_maintenance_instruction") 
+	private Boolean showMaintenanceInstruction;
+	
+	@Column(name="show_maintenance_reference") 
+	private Boolean showMaintenanceReference;
+	
+	@Column(name="show_source") 
+	private Boolean showSource;
+	
+	
+	
+	
 
 	//bi-directional many-to-one association to AircraftActivityStatus
 	@OneToMany(mappedBy="aircraft")
@@ -89,6 +108,68 @@ public class Aircraft implements Serializable {
 
 	public Aircraft() {
 	}
+
+	
+	
+	public Boolean getShowDescription() {
+		return showDescription;
+	}
+
+
+
+	public void setShowDescription(Boolean showDescription) {
+		this.showDescription = showDescription;
+	}
+
+
+
+	public Boolean getShowMaintenanceInstruction() {
+		return showMaintenanceInstruction;
+	}
+
+
+
+	public void setShowMaintenanceInstruction(Boolean showMaintenanceInstruction) {
+		this.showMaintenanceInstruction = showMaintenanceInstruction;
+	}
+
+
+
+	public Boolean getShowMaintenanceReference() {
+		return showMaintenanceReference;
+	}
+
+
+
+	public void setShowMaintenanceReference(Boolean showMaintenanceReference) {
+		this.showMaintenanceReference = showMaintenanceReference;
+	}
+
+
+
+	public Boolean getShowSource() {
+		return showSource;
+	}
+
+
+
+	public void setShowSource(Boolean showSource) {
+		this.showSource = showSource;
+	}
+
+
+
+	public Boolean getShowDeprecated() {
+		return showDeprecated;
+	}
+
+
+
+	public void setShowDeprecated(Boolean showDeprecated) {
+		this.showDeprecated = showDeprecated;
+	}
+
+
 
 	public Integer getId() {
 		return this.id;

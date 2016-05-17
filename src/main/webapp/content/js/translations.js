@@ -16,6 +16,7 @@ TigairApp.config(function($translateProvider) {
     activityStatusTable_lp: 'Lp',
     activityStatusTable_activityName: 'Paczka obsługowa/SB/AD',
     activityStatusTable_activityType: 'Typ operacji',
+    activityStatusTable_description: 'Szczegóły zadania',
     activityStatusTable_hoursInterval: 'Interwał godzinowy',
     activityStatusTable_calendarInterval: 'Interwał kalendarzowy',
     activityStatusTable_cyclesInterval: 'Interwał cykli',
@@ -37,6 +38,10 @@ TigairApp.config(function($translateProvider) {
     actionType_lubricate: 'Smarowanie',
     actionType_clean: 'Czyszczenie',
     actionType_oncondition: 'On-condition',
+    actionType_notRecognized: '---',
+    actionType_escalate: 'Eskalacja',
+    actionType_renew: 'Odnowienie',
+    actionType_test: 'Test',
     
     airframe: 'Płatowiec',
     engine: 'Silnik',

@@ -11,9 +11,14 @@ import org.joda.time.LocalDate;
 import org.joda.time.Period;
 import org.springframework.util.StringUtils;
 
+import pl.mountainrinji.rest.displaydatas.AircraftActivityStatusDisplayData;
+
 public class Utils {
 
 	public static String convertDate(Date date) {
+		if (date == null) {
+			return "---";
+		}
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		return sdf.format(date);
 	}
@@ -46,6 +51,22 @@ public class Utils {
 		
 		if (actionType.equals("S")) {
 			return "actionType_oncondition";
+		}
+		
+		if (actionType.equals("N")) {
+			return "actionType_renew";
+		}
+		
+		if (actionType.equals("T")) {
+			return "actionType_test";
+		}
+		
+		if (actionType.equals("E")) {
+			return "actionType_escalate";
+		}
+		
+		if (actionType.equals("X")) {
+			return "actionType_notRecognized";
 		}
 		
 		if (StringUtils.isEmpty(actionType)) {
@@ -155,6 +176,10 @@ public class Utils {
 	
 	public static long getMillisFromTime(String time1) {
 		String [] time1Parts = time1.split(":");
-		return Integer.parseInt(time1Parts[0]) * 60 * 60 * 1000 + Integer.parseInt(time1Parts[1]) * 60 * 1000;
+		return Long.parseLong(time1Parts[0]) * 60 * 60 * 1000 + Long.parseLong(time1Parts[1]) * 60 * 1000;
+	}
+	
+	public static String constructActivityId(AircraftActivityStatusDisplayData aasdd) {
+		return aasdd.getRoot().getAircraft().getName() + "/" + aasdd.getRoot().getActivity().getActivityPart() + "/" + aasdd.getRoot().getActivity().getId();
 	}
 }

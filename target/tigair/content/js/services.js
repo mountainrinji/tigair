@@ -16,11 +16,11 @@ factory('activitiesService', function($http) {
           });
       }
     
-    activitiesServiceAPI.getAircraftActivitiesExecution = function(activityPart, activityType) {
+    activitiesServiceAPI.getAircraftActivitiesExecution = function(regmark, activityPart, activityType) {
         return $http({
             method: 'GET', 
             url: 'http://localhost:8080/tigair/rest/genericFacade/getAircraftActivitiesExecution',
-            params: {activityPart: activityPart, activityType : activityType}
+            params: {regmark: regmark, activityPart: activityPart, activityType : activityType}
           });
       }
     
