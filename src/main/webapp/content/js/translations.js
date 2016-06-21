@@ -31,6 +31,9 @@ TigairApp.config(function($translateProvider) {
     activityStatusTable_cyclesLeft: 'Zostało cykli',
     activityStatusTable_crs: 'Ident. prac obsługowych',
     activityStatusTable_additionalNotes: 'Uwagi',
+    activityStatusTable_source: 'Źródło',
+    activityStatusTable_maintInstruction: 'Opis czynności',
+    activityStatusTable_maintReference: 'Referencje',
     
     actionType_overhaul: 'Naprawa główna',
     actionType_replace: 'Wymiana',
