@@ -27,21 +27,21 @@ controller('indexController', function($scope, activitiesService, $translate) {
     	$scope.javaActivitiesStatus = response;
     });
     
-    activitiesService.getAircraftData("PH-USA").success(function (response) {
+    activitiesService.getAircraftData("SP-DTQ").success(function (response) {
     	$scope.aircraftData = response;
     });
     
-    activitiesService.getAircraftActivitiesExecution("PH-USA", 'A', 'MAINT').success(function (response) {
+    activitiesService.getAircraftActivitiesExecution("SP-DTQ", 'A', 'MAINT').success(function (response) {
     	
     	$scope.aircraftActivitiesExecutionAMAINT = response;
     });
     
-    activitiesService.getAircraftActivitiesExecution("PH-USA", 'E', 'MAINT').success(function (response) {
+    activitiesService.getAircraftActivitiesExecution("SP-DTQ", 'E', 'MAINT').success(function (response) {
     	
     	$scope.aircraftActivitiesExecutionEMAINT = response;
     });
 
-    activitiesService.getAircraftActivitiesExecution("PH-USA", 'P', 'MAINT').success(function (response) {
+    activitiesService.getAircraftActivitiesExecution("SP-DTQ", 'P', 'MAINT').success(function (response) {
 	
 	$scope.aircraftActivitiesExecutionPMAINT = response;
 });

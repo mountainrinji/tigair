@@ -175,6 +175,7 @@ public class AircraftActivityStatusDisplayData {
 		}
 		
 		if (root.getActivity().getCalendarInterval() != null) {
+			System.out.println(root.getActivity().getActivityName());
 			daysLeft = Integer.parseInt(daysLeftStr);
 		}
 		
