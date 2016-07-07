@@ -2,9 +2,9 @@ package pl.mountainrinji;
 
 public enum Aircraft {
 	
-	SPFYZ ("SP-FYZ", 1),
+	SPFYZ ("SP-FYZ", 3),
 	PHUSA ("PH-USA", 2),
-	SPDTQ ("SP-DTQ", 3);	
+	SPDTQ ("SP-DTQ", 1);	
 	
 	private String registrationMark;
 	private Integer aicraftDbId;

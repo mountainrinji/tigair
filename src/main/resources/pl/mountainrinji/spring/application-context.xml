@@ -54,22 +54,22 @@ http://www.springframework.org/schema/tx
 	
 	<!-- QUARTZ -->
 	
-	<!-- bean name="updateFlightsQuartzBean" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+	<bean name="updateFlightsQuartzBean" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
 	
 		<property name="jobClass" value="pl.mountainrinji.quartz.UpdateFlightsQuartzBean" />	
 		<property name="durability" value="true" />
 		
-	</bean-->
+	</bean>
 	
 	
-	<!-- bean id="updateFlightsQuartTrigger" 
+	<bean id="updateFlightsQuartTrigger" 
                 class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
 		
 		<property name="jobDetail" ref="updateFlightsQuartzBean" />
-		<property name="repeatInterval" value="5000" />
+		<property name="repeatInterval" value="60000" />
 		<property name="startDelay" value="1000" />
 		
-	</bean-->
+	</bean>
 	
 	
 	<bean name="checkStatusQuartzBean" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
@@ -91,14 +91,14 @@ http://www.springframework.org/schema/tx
 <bean  class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
     <property name="jobDetails">
         <list>
-            <!--ref bean="updateFlightsQuartzBean" /-->
+            <ref bean="updateFlightsQuartzBean" />
             <!-- ref bean="checkStatusQuartzBean" /-->
         </list>
     </property>
  
     <property name="triggers">
         <list>
-            <!-- ref bean="updateFlightsQuartTrigger" /-->
+            <ref bean="updateFlightsQuartTrigger" />
             <!-- ref bean="checkStatusQuartTrigger" /-->
         </list>
     </property>
