@@ -1,8 +1,23 @@
+var urlParams;
+    (window.onpopstate = function () {
+        var match,
+            pl     = /\+/g,  // Regex for replacing addition symbol with a space
+            search = /([^&=]+)=?([^&]*)/g,
+            decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+            query  = window.location.search.substring(1);
+
+        urlParams = {};
+        while (match = search.exec(query))
+           urlParams[decode(match[1])] = decode(match[2]);
+    })();
+    
+   
+
 
 angular.module('TigairApp.controllers', ['TigairApp.services', ]).
 controller('indexController', function($scope, activitiesService, $translate) {
 	
-	$translate.use('pl');
+	$translate.use(urlParams['lang']);
 	
     $scope.appVersion = "0.01";
     
@@ -27,21 +42,21 @@ controller('indexController', function($scope, activitiesService, $translate) {
     	$scope.javaActivitiesStatus = response;
     });
     
-    activitiesService.getAircraftData("PH-USA").success(function (response) {
+    activitiesService.getAircraftData(urlParams['regMark']).success(function (response) {
     	$scope.aircraftData = response;
     });
     
-    activitiesService.getAircraftActivitiesExecution("PH-USA", 'A', 'MAINT').success(function (response) {
+    activitiesService.getAircraftActivitiesExecution(urlParams['regMark'], 'A', 'MAINT').success(function (response) {
     	
     	$scope.aircraftActivitiesExecutionAMAINT = response;
     });
     
-    activitiesService.getAircraftActivitiesExecution("PH-USA", 'E', 'MAINT').success(function (response) {
+    activitiesService.getAircraftActivitiesExecution(urlParams['regMark'], 'E', 'MAINT').success(function (response) {
     	
     	$scope.aircraftActivitiesExecutionEMAINT = response;
     });
 
-    activitiesService.getAircraftActivitiesExecution("PH-USA", 'P', 'MAINT').success(function (response) {
+    activitiesService.getAircraftActivitiesExecution(urlParams['regMark'], 'P', 'MAINT').success(function (response) {
 	
 	$scope.aircraftActivitiesExecutionPMAINT = response;
 });
