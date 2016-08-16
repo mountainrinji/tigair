@@ -63,8 +63,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="activityExecution in aircraftActivitiesExecution" class="{{activityExecution.rowConfiguration.rowClass}}">
-        <td>{{activityExecution.aircraftActivityStatus.taskIdentifier}}</td>
+      <tr ng-repeat="activityExecution in aircraftActivitiesExecution"  class="{{activityExecution.rowConfiguration.rowClass}}" style="cursor: pointer;">
+        <!-- td>
+         <input type="checkbox"/>
+        </td-->
+        <td ng-click="go()">{{activityExecution.aircraftActivityStatus.taskIdentifier}}</td>
         <td>
           
           {{activityExecution.activity.root.activityName}}

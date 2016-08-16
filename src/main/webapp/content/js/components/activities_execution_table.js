@@ -11,7 +11,9 @@ TigairApp.directive('activitiesExecutionTable', function () {
 		},
 	    templateUrl: '/tigair/content/components/activities_execution_table.html',
 	    controller: function ($scope) {
-	    	
-	      }
+	    	$scope.go = function() {
+	    		 window.location='www.onet.pl';
+	    		};	
+	    }
 	};
 });
