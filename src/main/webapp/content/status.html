@@ -19,55 +19,31 @@
   
 
   
-<body ng-app="TigairApp" ng-controller="indexController" >
+<body ng-app="TigairApp" >
 	
-	<table class="regular-table">
-	<thead class="headers">
-		<tr><th colspan="17">
-			
-			{{aircraftData.name}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{'aircraftdata_statusObslugowy' | translate }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{currentDate.toLocaleDateString("pl-PL")}}
-			<table class="aircraft-data-table">
-				<tr>
-					<td>{{'aircraftdata_aircraft' | translate}} {{aircraftData.make}}</td>
-					<td>{{'aircraftdata_serialno' | translate}} {{aircraftData.serialNo}}</td>
-					<td>{{'aircraftdata_manufacturedDate' | translate}} {{aircraftData.manufacturedDate}}</td>
-					<td>{{'aircraftdata_typeCertificate' | translate}} {{aircraftData.typeCertificate}}</td>
-					<td>{{'aircraftdata_totalTime' | translate}} {{aircraftData.totalTime}}</td>
-				</tr>
-			</table>
-		
-		</th></tr>
-	</thead>
-    </table>
-    
-  <activities_execution_table 
-  	header-css="'airframe-headers'" 
-  	part-data-visibility-css="'doNotDisplayPartData'" 
-  	part="'airframe' | translate"  
-  	show-deprecated="aircraftActivitiesExecutionAMAINT[0].aircraft.showDeprecated"
-  	aircraft-activities-execution="aircraftActivitiesExecutionAMAINT">
-  </activities_execution_table>
-    <activities_execution_table 
-  	header-css="'engine-headers'" 
-  	part-data-visibility-css="'displayPartData'" 
-  	part="'engine' | translate" 
-  	part-data="aircraftActivitiesExecutionAMAINT[0].engine"
-  	show-deprecated="aircraftActivitiesExecutionAMAINT[0].aircraft.showDeprecated" 
-  	aircraft-activities-execution="aircraftActivitiesExecutionEMAINT">
-  </activities_execution_table>    
-  <activities_execution_table 
-  	header-css="'propeller-headers'" 
-  	part-data-visibility-css="'displayPartData'" 
-  	part="'propeller' | translate" 
-  	part-data="aircraftActivitiesExecutionAMAINT[0].propeller" 
-  	show-deprecated="aircraftActivitiesExecutionAMAINT[0].aircraft.showDeprecated"
-  	aircraft-activities-execution="aircraftActivitiesExecutionPMAINT">
-  </activities_execution_table>
-  
+	<nav class="navbar navbar-inverse" role="navigation">
+	    <div class="navbar-header">
+	        <a class="navbar-brand" ui-sref="#">AngularUI Router</a>
+	    </div>
+	    <ul class="nav navbar-nav">
+	        <li><a ui-sref="list">Lista</a></li>
+	        <li><a ui-sref="about">About</a></li>
+	    </ul>
+	</nav>
 
-  <script src="bower_components/angular/angular.js"></script>
+	<!-- MAIN CONTENT -->
+	<div class="container">
+	
+	    <!-- THIS IS WHERE WE WILL INJECT OUR CONTENT ============================== -->
+	    <div ui-view></div>
+	
+	</div>
+	
+	<script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="bower_components/angular-translate/angular-translate.js"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+    
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
   <script src="js/app.js"></script>

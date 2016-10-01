@@ -17,6 +17,7 @@ var urlParams;
 angular.module('TigairApp.controllers', ['TigairApp.services', ]).
 controller('indexController', function($scope, activitiesService, $translate) {
 	
+	
 	$translate.use(urlParams['lang']);
 	
     $scope.appVersion = "0.01";
@@ -65,10 +66,16 @@ controller('indexController', function($scope, activitiesService, $translate) {
     
 });
 
-var controllers = angular.module('TigairApp.controllers');
-controllers.controller('detailsController', function($scope, $translate, selectionService) {
-    
-    alert(selectionService.get().toString());
-    
-    
+angular.module('TigairApp.detailsController', ['TigairApp.services', ]).
+controller('detailsController', function($scope, selectionService, $translate) {
+	$scope.selectedRecord = selectionService.get();
+	
 });
+
+//angular.module('TigairApp.controllers', ['TigairApp.services', ]).
+//controller('detailsController', function($scope, $translate, selectionService) {
+//    
+//    alert('ad');
+//    
+//    
+//});

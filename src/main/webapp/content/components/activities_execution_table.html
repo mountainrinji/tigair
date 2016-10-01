@@ -67,7 +67,7 @@
         <!-- td>
          <input type="checkbox"/>
         </td-->
-        <td ng-click="go(activityExecution)">{{activityExecution.aircraftActivityStatus.taskIdentifier}}</td>
+        <td ng-click="go(activityExecution)"> <a ui-sref="about">{{activityExecution.aircraftActivityStatus.taskIdentifier}} </a></td>
         <td>
           
           {{activityExecution.activity.root.activityName}}
