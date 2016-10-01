@@ -1,4 +1,4 @@
-TigairApp.directive('activitiesExecutionTable', function () {
+TigairApp.directive('activitiesExecutionTable', function (selectionService, $location) {
     return {
         restrict: 'E',
         transclude: true,
@@ -10,9 +10,10 @@ TigairApp.directive('activitiesExecutionTable', function () {
 			partData: '='
 		},
 	    templateUrl: '/tigair/content/components/activities_execution_table.html',
-	    controller: function ($scope) {
-	    	$scope.go = function() {
-	    		 window.location='www.onet.pl';
+	    controller: function ($scope, selectionService) {
+	    	$scope.go = function($item) {
+	    		selectionService.set($item);
+	    		//window.location=document.getElementById('details').click();
 	    		};	
 	    }
 	};

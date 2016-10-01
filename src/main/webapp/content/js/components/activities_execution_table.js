@@ -13,8 +13,7 @@ TigairApp.directive('activitiesExecutionTable', function (selectionService, $loc
 	    controller: function ($scope, selectionService) {
 	    	$scope.go = function($item) {
 	    		selectionService.set($item);
-	    		alert(selectionService.get());
-	    		 $location.url('details.html');
+	    		//window.location=document.getElementById('details').click();
 	    		};	
 	    }
 	};

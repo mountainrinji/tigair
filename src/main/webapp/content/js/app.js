@@ -1,4 +1,4 @@
-var TigairApp = angular.module('TigairApp', ['TigairApp.controllers', 'TigairApp.detailsController', 'TigairApp.services', 'pascalprecht.translate', 'ui.router']);
+var TigairApp = angular.module('TigairApp', ['TigairApp.controllers', 'TigairApp.detailsController', 'TigairApp.services', 'pascalprecht.translate', 'ui.router', 'ngResource']);
 
 TigairApp.config(function($stateProvider, $urlRouterProvider) {
     
@@ -14,7 +14,7 @@ TigairApp.config(function($stateProvider, $urlRouterProvider) {
         })
         
         // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
-        .state('about', {
+        .state('list.about', {
         	url: '/about',
             templateUrl: 'details.html',
             controller: 'detailsController'

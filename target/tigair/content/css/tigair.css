@@ -15,6 +15,7 @@
 	border-width: 1px;
 	border-color: black;
 		padding: 3px;
+		
 	
 }
 
@@ -35,6 +36,7 @@
 
 .yellow-warning {
 	background-color: yellow;
+	-webkit-print-color-adjust: exact;
 }
 
 .red-warning {
@@ -43,14 +45,17 @@
 
 .airframe-headers {
 	background-color: green;
+	-webkit-print-color-adjust: exact;
 }
 
 .engine-headers {
 	background-color: orange;
+	-webkit-print-color-adjust: exact;
 }
 
 .propeller-headers {
 	background-color: blue;
+	-webkit-print-color-adjust: exact;
 }
 
 .displayPartData {

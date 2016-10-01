@@ -1,5 +1,5 @@
 
-angular.module('TigairApp.services', []).
+angular.module('TigairApp.services', ['ngResource']).
 factory('activitiesService', function($http) {
 
     var activitiesServiceAPI = {};
@@ -53,3 +53,9 @@ services.service('selectionService', function() {
     	 }
     
   });
+
+services.factory('UserFactory', function ($resource) {
+    return $resource('/tigair/rest/genericFacade/save', {}, {
+        update: { method: 'PUT', params: {id: '@id'} }
+    })
+});

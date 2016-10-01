@@ -67,8 +67,18 @@ controller('indexController', function($scope, activitiesService, $translate) {
 });
 
 angular.module('TigairApp.detailsController', ['TigairApp.services', ]).
-controller('detailsController', function($scope, selectionService, $translate) {
-	$scope.selectedRecord = selectionService.get();
+controller('detailsController', function($scope, selectionService, UserFactory, $translate) {
+	//$scope.selectedRecord = selectionService.selectedRecord;
+	
+	Object.defineProperty($scope, 'selectedRecord', {
+        get: function() { return selectionService.get(); }
+        //set: function(val) { testService.count = val; },
+    });
+	
+	// callback for ng-click 'updateUser':
+    $scope.updateUser = function () {
+       UserFactory.update($scope.selectedRecord);
+    };
 	
 });
 

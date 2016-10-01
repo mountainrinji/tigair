@@ -1,4 +1,5 @@
-
+ 
+  
 <table class="regular-table">
 <thead class="{{headerCss}}">
     <tr>
@@ -67,7 +68,7 @@
         <!-- td>
          <input type="checkbox"/>
         </td-->
-        <td ng-click="go(activityExecution)"> <a ui-sref="about">{{activityExecution.aircraftActivityStatus.taskIdentifier}} </a></td>
+        <td ng-click="go(activityExecution)"> <a onclick="document.getElementById('details').scrollIntoView();" ui-sref=".about">{{activityExecution.aircraftActivityStatus.taskIdentifier}} </a></td>
         <td>
           
           {{activityExecution.activity.root.activityName}}
@@ -83,7 +84,7 @@
         </td>
         <td ng-show="{{activityExecution.aircraft.root.showDescription}}">
           
-          {{ activityExecution.activity.root.description }}
+          {{ activityExecution.activity.root.description }} 
         </td>
         
         <td ng-show="{{activityExecution.aircraft.root.showMaintenanceInstruction}}">
@@ -158,3 +159,5 @@
       </tr>
     </tbody>
     </table>
+    
+    
