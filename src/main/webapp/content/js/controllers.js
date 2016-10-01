@@ -26,6 +26,8 @@ controller('indexController', function($scope, activitiesService, $translate) {
     $scope.aircraftData = {};
     $scope.currentDate = new Date();
     
+    $scope.selectedRecord = {};
+    
     $scope.aircraftActivitiesExecutionAMAINT = {};
     $scope.aircraftActivitiesExecutionEMAINT = {};
     $scope.aircraftActivitiesExecutionPMAINT = {};
@@ -60,5 +62,13 @@ controller('indexController', function($scope, activitiesService, $translate) {
 	
 	$scope.aircraftActivitiesExecutionPMAINT = response;
 });
+    
+});
+
+var controllers = angular.module('TigairApp.controllers');
+controllers.controller('detailsController', function($scope, $translate, selectionService) {
+    
+    alert(selectionService.get().toString());
+    
     
 });

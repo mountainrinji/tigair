@@ -34,3 +34,22 @@ factory('activitiesService', function($http) {
 
     return activitiesServiceAPI;
   });
+
+var services = angular.module('TigairApp.services');
+services.service('selectionService', function() {
+
+    var selectedRecord;
+    
+    function set(data) {
+    	selectedRecord = data;
+    }
+    function get() {
+    	  return selectedRecord;
+    }
+    
+    return {
+    	  set: set,
+    	  get: get
+    	 }
+    
+  });

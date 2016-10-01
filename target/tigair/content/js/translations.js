@@ -1,9 +1,69 @@
 
 TigairApp.config(function($translateProvider) {
   $translateProvider.translations('en', {
-	  aircraftdata_aircraft: 'Aircraft: ',
-    HEADLINE: 'Hello there, This is my awesome app!',
-    INTRO_TEXT: 'And it has i18n support!'
+	  aircraftdata_statusObslugowy: 'INVENTORY DUE LIST',
+	    aircraftdata_aircraft: 'Aircraft: ',
+	    aircraftdata_serialno: 'Serial no.: ',
+	    aircraftdata_manufacturedDate: 'Manufactured date: ',
+	    aircraftdata_typeCertificate: 'Type certificate: ',
+	    aircraftdata_totalTime: 'Total time',
+	    
+	    activityStatusTable_lp: 'No.',
+	    activityStatusTable_activityName: 'Maintainence task/SB/AD',
+	    activityStatusTable_activityType: 'Operation type',
+	    activityStatusTable_description: 'Task details',
+	    activityStatusTable_hoursInterval: 'Hours interval',
+	    activityStatusTable_calendarInterval: 'Calendar interval [mnths]',
+	    activityStatusTable_cyclesInterval: 'Cycles interval',
+	    activityStatusTable_executedHours: 'Performed at TT',
+	    activityStatusTable_executedDate: 'Performed at date',
+	    activityStatusTable_executedCycles: 'Performed at cycles',
+	    activityStatusTable_dueHours: 'TBD at TT',
+	    activityStatusTable_dueDate: 'TBD at date',
+	    activityStatusTable_dueCycles: 'TBD at cycles',
+	    activityStatusTable_hoursLeft: 'Hours left',
+	    activityStatusTable_daysLeft: 'Days left',
+	    activityStatusTable_cyclesLeft: 'Cycles left',
+	    activityStatusTable_crs: 'CRS',
+	    activityStatusTable_additionalNotes: 'Additional notes',
+	    activityStatusTable_source: 'Source',
+	    activityStatusTable_maintInstruction: 'Maint. instruction',
+	    activityStatusTable_maintReference: 'Maint. instr. ref.',
+	    
+	    actionType_overhaul: 'Overhaul',
+	    actionType_replace: 'Replace',
+	    actionType_inspect: 'Inspect',
+	    actionType_lubricate: 'Lubricate',
+	    actionType_clean: 'Clean',
+	    actionType_oncondition: 'On-condition',
+	    actionType_notRecognized: '---',
+	    actionType_escalate: 'Escalation',
+	    actionType_renew: 'Renew',
+	    actionType_test: 'Test',
+	    
+	    airframe: 'Airframe',
+	    engine: 'Engine',
+	    propeller: 'Propeller',
+	    
+	    engine_model: 'Model: ',
+	    engine_serialNo: 'Serial no.: ',
+	    engine_manufacturedYear: 'Year of manufacture: ',
+	    engine_certificationType: 'Type certificate: ',
+	    engine_timeSinceOH: 'Time since OH: ',
+	    
+	    propeller_model: 'Model: ',
+	    propeller_serialNo: 'Serial no.: ',
+	    propeller_manufacturedYear: 'Year of manufacture: ',
+	    propeller_certificationType: 'Type certificate: ',
+	    propeller_timeSinceOH: 'Time since OH: ',
+	    propeller_totalTime: 'Total time:',
+	    
+	    part_model: 'Model: ',
+	    part_serialNo: 'Serial no.: ',
+	    part_manufacturedYear: 'Year of manufacture: ',
+	    part_certificationType: 'Type certificate: ',
+	    part_timeSinceOH: 'Time since OH: ',
+	    part_totalTime: 'Total time: '
   })
   .translations('pl', {
 	aircraftdata_statusObslugowy: 'STATUS OBSŁUGOWY SAMOLOTU',
@@ -31,6 +91,9 @@ TigairApp.config(function($translateProvider) {
     activityStatusTable_cyclesLeft: 'Zostało cykli',
     activityStatusTable_crs: 'Ident. prac obsługowych',
     activityStatusTable_additionalNotes: 'Uwagi',
+    activityStatusTable_source: 'Źródło',
+    activityStatusTable_maintInstruction: 'Opis czynności',
+    activityStatusTable_maintReference: 'Referencje',
     
     actionType_overhaul: 'Naprawa główna',
     actionType_replace: 'Wymiana',
