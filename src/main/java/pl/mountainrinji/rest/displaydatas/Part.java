@@ -9,7 +9,9 @@ public class Part {
 	private String totalTime;
 	private String totalTimeSinceOverhaul;
 	
-	
+	public Part() {
+		
+	}
 	
 	public Part(String model, String serialNo, String manufacturedYear, String typeCertificate, String totalTime,
 			String totalTimeSinceOverhaul) {

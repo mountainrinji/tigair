@@ -13,6 +13,10 @@ public class RowConfigurationDisplayData {
 	
 	private String rowClass;
 
+	public RowConfigurationDisplayData() {
+		
+	}
+	
 	public RowConfigurationDisplayData(AircraftActivityStatusDisplayData activityStatus) {
 		determineRowClass(activityStatus);
 	}

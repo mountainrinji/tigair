@@ -24,6 +24,10 @@ public class ActivityDisplayData {
 	private String usualIntervalColumnCss;
 	private String specialIntervalColumnCss;
 	
+	public ActivityDisplayData() {
+		
+	}
+	
 	public String getUsualIntervalColumnCss() {
 		return usualIntervalColumnCss;
 	}

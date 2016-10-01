@@ -32,7 +32,9 @@ public class AircraftActivityStatusDisplayData {
 	private Integer daysLeft = Integer.MAX_VALUE;
 	private Integer cyclesLeft = Integer.MAX_VALUE;
 	
-	
+	public AircraftActivityStatusDisplayData() {
+		
+	}
 	
 	public AircraftActivityStatusDisplayData(AircraftActivityStatus aircraftActivityStatus) {
 		this.root = aircraftActivityStatus;

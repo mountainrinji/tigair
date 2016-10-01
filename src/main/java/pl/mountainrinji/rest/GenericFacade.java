@@ -33,8 +33,9 @@ public class GenericFacade {
     @Path("/save")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Object update(Object object) {
-        return null;
+    public Object update(AircraftActivitiesStatusResult object) {
+        getAircraftActivityStatusDAO().save(object.getAircraftActivityStatus().getRoot());
+        return "";
     }
 	
     

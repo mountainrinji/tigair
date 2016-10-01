@@ -11,7 +11,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -32,6 +34,14 @@ public class AircraftActivityStatusDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
+	
+	@Transactional(propagation=Propagation.REQUIRES_NEW)
+	public void save(AircraftActivityStatus aas) {
+		if (StringUtils.isEmpty(aas.getCrs())) {
+			aas.setCrs(null);
+		}
+		sessionFactory.getCurrentSession().update(aas);
+	}
 	
 	@Transactional
 	public List<AircraftActivityStatus> getAllActivityStatuses() {

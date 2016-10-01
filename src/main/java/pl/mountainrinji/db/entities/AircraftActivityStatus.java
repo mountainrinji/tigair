@@ -58,19 +58,53 @@ public class AircraftActivityStatus implements Serializable {
 
 	@Column(name="serial_no")
 	private String serialNo;
+	
+	@Column(name="aircraft_id")
+	private Integer aircraftId;
+	
+	@Column(name="activity_id")
+	private Integer activityId;
 
 	//bi-directional many-to-one association to Activity
 	@ManyToOne
 	@JsonIgnore
+	@JoinColumn(name="activity_id", insertable=false, updatable=false)
 	private Activity activity;
 
 	//bi-directional many-to-one association to Aircraft
 	@ManyToOne
 	@JsonIgnore
+	@JoinColumn(name="aircraft_id", insertable=false, updatable=false)
 	private Aircraft aircraft;
 
 	public AircraftActivityStatus() {
 	}
+
+	
+	
+	public Integer getAircraftId() {
+		return aircraftId;
+	}
+
+
+
+	public void setAircraftId(Integer aircraftId) {
+		this.aircraftId = aircraftId;
+	}
+
+
+
+	public Integer getActivityId() {
+		return activityId;
+	}
+
+
+
+	public void setActivityId(Integer activityId) {
+		this.activityId = activityId;
+	}
+
+
 
 	public Integer getId() {
 		return this.id;

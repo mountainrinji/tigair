@@ -15,6 +15,9 @@ public class AircraftDisplayData {
 
 	private Integer colspan;
 	
+	public AircraftDisplayData() {
+		
+	}
 	
 	public AircraftDisplayData(Aircraft root) {
 		super();
