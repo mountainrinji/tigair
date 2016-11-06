@@ -1,0 +1,56 @@
+
+<h1>Activity details</h1>
+
+<table>
+	<tr>
+		<td class="cell-form">Activity id:</td>
+		<td class="cell-form"><input type="text"
+			ng-model="selectedRecord.aircraftActivityStatus.taskIdentifier"
+			disabled="disabled"></td>
+	</tr>
+	<tr>
+		<td class="cell-form">Hours interval:</td>
+		<td class="cell-form"><input type="text"
+			ng-model="selectedRecord.activity.hoursIntervalStr"
+			disabled="disabled"></td>
+	</tr>
+	<tr>
+		<td class="cell-form">Calendar interval:</td>
+		<td class="cell-form"><input type="text"
+			ng-model="selectedRecord.activity.calendarIntervalStr"
+			disabled="disabled"></td>
+	</tr>
+	<tr>
+		<td class="cell-form">CRS:</td>
+		<td class="cell-form"><input type="text"
+			ng-model="selectedRecord.aircraftActivityStatus.root.crs"></td>
+	</tr>
+	<tr>
+		<td class="cell-form">Performed at TT:</td>
+		<td class="cell-form"><input type="text"
+			ng-model="selectedRecord.aircraftActivityStatus.root.executedHours"></td>
+	</tr>
+	<tr>
+		<td class="cell-form">Performed at date:</td>
+		<td class="cell-form"><input type="text"
+			ng-model="selectedRecord.aircraftActivityStatus.executedDateStr"></td>
+	</tr>
+	<tr>
+		<td class="cell-form">TBD at TT:</td>
+		<td class="cell-form"><input type="text"
+			ng-model="selectedRecord.aircraftActivityStatus.nextExecutionHoursStr"></td>
+	</tr>
+	<tr>
+		<td class="cell-form">TBD at date:</td>
+		<td class="cell-form"><input type="text"
+			ng-model="selectedRecord.aircraftActivityStatus.nextExecutionDateStr"></td>
+	</tr>
+</table>
+
+<input type="submit" ng-click="updateUser(selectedRecord)" value="Save" />
+    
+	
+	{{appVersion}}
+	{{selectedRecord.activity.root.activityName}}
+	{{selectedRecord}}
+  

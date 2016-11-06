@@ -1,6 +1,8 @@
 package pl.mountainrinji.db.dao;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.codehaus.jettison.json.JSONArray;
@@ -19,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import pl.mountainrinji.Utils;
 import pl.mountainrinji.db.entities.Activity;
 import pl.mountainrinji.db.entities.Aircraft;
 import pl.mountainrinji.db.entities.AircraftActivityStatus;
@@ -36,11 +39,42 @@ public class AircraftActivityStatusDAO {
 	private SessionFactory sessionFactory;
 	
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
-	public void save(AircraftActivityStatus aas) {
-		if (StringUtils.isEmpty(aas.getCrs())) {
-			aas.setCrs(null);
+	public void save(AircraftActivitiesStatusResult object) throws ParseException {
+		
+		String executedHours = object.getAircraftActivityStatus().getRoot().getExecutedHours();
+		String executedDateStr = object.getAircraftActivityStatus().getExecutedDateStr();
+		String nextExecutionHours = object.getAircraftActivityStatus().getNextExecutionHoursStr();
+		String nextExecutionDateStr = object.getAircraftActivityStatus().getNextExecutionDateStr();
+		
+		
+		AircraftActivityStatus toSave = object.getAircraftActivityStatus().getRoot();
+		
+		if (StringUtils.isEmpty(executedHours) || executedHours.equals("---")) {
+			toSave.setExecutedHours(null);
 		}
-		sessionFactory.getCurrentSession().update(aas);
+		
+		if (StringUtils.isEmpty(executedDateStr) || executedDateStr.equals("---")) {
+			toSave.setExecutedDate(null);
+		} else {
+			toSave.setExecutedDate(Utils.convertString(executedDateStr));
+		}
+		
+		if (StringUtils.isEmpty(nextExecutionHours) || nextExecutionHours.equals("---")) {
+			toSave.setNextExecutionHours(null);
+		} else {
+			toSave.setNextExecutionHours(nextExecutionHours);
+		}
+		
+		if (StringUtils.isEmpty(nextExecutionDateStr) || nextExecutionDateStr.equals("---")) {
+			toSave.setNextExecutionDate(null);
+		} else {
+			toSave.setNextExecutionDate(Utils.convertString(nextExecutionDateStr));
+		}
+		
+		if (StringUtils.isEmpty(toSave.getCrs())) {
+			toSave.setCrs(null);
+		}
+		sessionFactory.getCurrentSession().update(toSave);
 	}
 	
 	@Transactional

@@ -1,0 +1,55 @@
+
+
+<table class="regular-table">
+	<thead class="headers">
+		<tr><th colspan="17">
+			
+			{{aircraftData.name}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{'aircraftdata_statusObslugowy' | translate }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{currentDate.toLocaleDateString("pl-PL")}}
+			<table class="aircraft-data-table">
+				<tr>
+					<td>{{'aircraftdata_aircraft' | translate}} {{aircraftData.make}}</td>
+					<td>{{'aircraftdata_serialno' | translate}} {{aircraftData.serialNo}}</td>
+					<td>{{'aircraftdata_manufacturedDate' | translate}} {{aircraftData.manufacturedDate}}</td>
+					<td>{{'aircraftdata_typeCertificate' | translate}} {{aircraftData.typeCertificate}}</td>
+					<td>{{'aircraftdata_totalTime' | translate}} {{aircraftData.totalTime}}</td>
+				</tr>
+			</table>
+		
+		</th></tr>
+	</thead>
+    </table>
+    
+  <activities_execution_table 
+  	header-css="'airframe-headers'" 
+  	part-data-visibility-css="'doNotDisplayPartData'" 
+  	part="'airframe' | translate"  
+  	show-deprecated="aircraftActivitiesExecutionAMAINT[0].aircraft.showDeprecated"
+  	aircraft-activities-execution="aircraftActivitiesExecutionAMAINT">
+  </activities_execution_table>
+    <activities_execution_table 
+  	header-css="'engine-headers'" 
+  	part-data-visibility-css="'displayPartData'" 
+  	part="'engine' | translate" 
+  	part-data="aircraftActivitiesExecutionAMAINT[0].engine"
+  	show-deprecated="aircraftActivitiesExecutionAMAINT[0].aircraft.showDeprecated" 
+  	aircraft-activities-execution="aircraftActivitiesExecutionEMAINT">
+  </activities_execution_table>    
+  <activities_execution_table 
+  	header-css="'propeller-headers'" 
+  	part-data-visibility-css="'displayPartData'" 
+  	part="'propeller' | translate" 
+  	part-data="aircraftActivitiesExecutionAMAINT[0].propeller" 
+  	show-deprecated="aircraftActivitiesExecutionAMAINT[0].aircraft.showDeprecated"
+  	aircraft-activities-execution="aircraftActivitiesExecutionPMAINT">
+  </activities_execution_table>
+  
+  <br>
+  <br>
+
+	<div id="details" class="container">
+	
+	    <!-- THIS IS WHERE WE WILL INJECT OUR CONTENT ============================== -->
+	    <div ui-view></div>
+	
+	</div>
+  
