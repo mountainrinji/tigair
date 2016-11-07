@@ -1,6 +1,7 @@
 package pl.mountainrinji;
 
 
+import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -58,6 +59,8 @@ public class StatusCalculator {
 	}
 	
 	private void sendEmail(String registration, String body) {
+		
+		body = attachHostInfo(body);
 		final String username = "tigair.tt@gmail.com";
 		final String password = "1qa2ws#ED";
 
@@ -80,7 +83,7 @@ public class StatusCalculator {
 			message.setFrom(new InternetAddress("tigair.tt@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO,
 				InternetAddress.parse("leszczyfon@gmail.com"));
-			message.setSubject("[" + registration + "-TODO");
+			message.setSubject("[" + registration + "-TODO] Czynnosci do wykonania");
 			message.setContent(body, "text/html; charset=utf-8");
 
 			Transport.send(message);
@@ -92,6 +95,21 @@ public class StatusCalculator {
 		}
 	}
 	
+	private String attachHostInfo(String body) {
+		InetAddress ip;
+		
+		try {
+			ip = InetAddress.getLocalHost();
+			body = body + "<br><br><br><br><br>-------------------------------------------------------------------------<br>"
+					+ "<br>Detale pod adresem: http://" + ip.getHostAddress() + ":8080/tigair/content/index.html";
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		return body;
+		
+	}
+
 	private void prepareAndSendEmails() {
 		Map<String, StringBuffer> map = new HashMap<String, StringBuffer>();
 		
