@@ -36,18 +36,25 @@ public class StatusCalculator {
 	private Map<String, StringBuffer> yellows = new HashMap<String, StringBuffer>();
 	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
-	public synchronized void checkStatusesAndSendEmails() {
+	public void checkStatusesAndSendEmails() {
 		
-		reds = new HashMap<String, StringBuffer>();
-		yellows = new HashMap<String, StringBuffer>();
-		
-		List<AircraftActivityStatus> activities = getAasDao().getAllActivityStatuses();
-		
-		for (AircraftActivityStatus aas : activities) {
-			calculateDueDatesAndSaveThem(aas);
+		try {
+			reds = new HashMap<String, StringBuffer>();
+			yellows = new HashMap<String, StringBuffer>();
+			
+			List<AircraftActivityStatus> activities = getAasDao().getAllActivityStatuses();
+			
+			for (int index = 0; index < activities.size(); index++) {
+				AircraftActivityStatus aas = activities.get(index);
+				if (aas != null && aas.getActivity().getDeprecated() != true) {
+					calculateDueDatesAndSaveThem(activities.get(index));
+				}
+			}
+			
+			prepareAndSendEmails();
+		} catch (Exception ex) {
+			ex.printStackTrace();
 		}
-		
-		prepareAndSendEmails();
 	}
 	
 	private void sendEmail(String registration, String body) {
@@ -73,7 +80,7 @@ public class StatusCalculator {
 			message.setFrom(new InternetAddress("tigair.tt@gmail.com"));
 			message.setRecipients(Message.RecipientType.TO,
 				InternetAddress.parse("leszczyfon@gmail.com"));
-			message.setSubject(registration);
+			message.setSubject("[" + registration + "-TODO");
 			message.setContent(body, "text/html; charset=utf-8");
 
 			Transport.send(message);
@@ -143,13 +150,24 @@ public class StatusCalculator {
 		RowConfigurationDisplayData rcdd = new RowConfigurationDisplayData(aasdd);
 		String rowClass = rcdd.getRowClass();
 		
-		if (rowClass.equals("yellow-warning")) {
+		if (rowClass.equals("yellow-warning") && aas.getYellowWarningCounter() < 2) {
 			addWarning(this.yellows, "yellow", aasdd);
-		} else if (rowClass.equals("red-warning")) {
+			updateCounter("yellow", aas.getYellowWarningCounter() + 1, aas);
+		} else if (rowClass.equals("red-warning") && aas.getRedWarningCounter() < 2) {
 			addWarning(this.reds, "red", aasdd);
+			updateCounter("red", aas.getRedWarningCounter() + 1, aas);
 		}
 	}
 
+	private void updateCounter(String color, Integer newCounter, AircraftActivityStatus aas) {
+		if (color.equals("yellow")) {
+			aas.setYellowWarningCounter(newCounter);
+		} else {
+			aas.setRedWarningCounter(newCounter);
+		}
+		getAasDao().update(aas);
+	}
+	
 	private void addWarning(Map<String, StringBuffer> map, String rowClass, AircraftActivityStatusDisplayData aasdd) {
 		if (!map.containsKey(aasdd.getRoot().getAircraft().getName())) {
 			map.put(aasdd.getRoot().getAircraft().getName(), constructHeader(rowClass));

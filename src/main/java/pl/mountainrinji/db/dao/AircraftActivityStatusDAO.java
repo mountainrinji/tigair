@@ -38,6 +38,11 @@ public class AircraftActivityStatusDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	@Transactional
+	public void update(AircraftActivityStatus aas) {
+		sessionFactory.getCurrentSession().update(aas);
+	}
+	
 	@Transactional(propagation=Propagation.REQUIRES_NEW)
 	public void save(AircraftActivitiesStatusResult object) throws ParseException {
 		
@@ -74,6 +79,9 @@ public class AircraftActivityStatusDAO {
 		if (StringUtils.isEmpty(toSave.getCrs())) {
 			toSave.setCrs(null);
 		}
+		
+		toSave.setYellowWarningCounter(0);
+		toSave.setRedWarningCounter(0);
 		sessionFactory.getCurrentSession().update(toSave);
 	}
 	

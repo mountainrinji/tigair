@@ -64,6 +64,12 @@ public class AircraftActivityStatus implements Serializable {
 	
 	@Column(name="activity_id")
 	private Integer activityId;
+	
+	@Column(name="yellow_warning_counter")
+	private Integer yellowWarningCounter;
+	
+	@Column(name="red_warning_counter")
+	private Integer redWarningCounter;
 
 	//bi-directional many-to-one association to Activity
 	@ManyToOne
@@ -226,4 +232,29 @@ public class AircraftActivityStatus implements Serializable {
 		this.aircraft = aircraft;
 	}
 
+
+
+	public Integer getYellowWarningCounter() {
+		return yellowWarningCounter;
+	}
+
+
+
+	public void setYellowWarningCounter(Integer yellowWarningCounter) {
+		this.yellowWarningCounter = yellowWarningCounter;
+	}
+
+
+
+	public Integer getRedWarningCounter() {
+		return redWarningCounter;
+	}
+
+
+
+	public void setRedWarningCounter(Integer redWarningCounter) {
+		this.redWarningCounter = redWarningCounter;
+	}
+
+	
 }

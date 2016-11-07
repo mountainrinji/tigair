@@ -79,7 +79,7 @@ http://www.springframework.org/schema/tx
 		
 	</bean>
 	
-	<bean id="checkStatusQuartTrigger" 
+	<bean id="checkStatusQuartzTrigger" 
                 class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
 		
 		<property name="jobDetail" ref="checkStatusQuartzBean" />
@@ -92,14 +92,14 @@ http://www.springframework.org/schema/tx
     <property name="jobDetails">
         <list>
             <ref bean="updateFlightsQuartzBean" />
-            <!-- ref bean="checkStatusQuartzBean" /-->
+            <ref bean="checkStatusQuartzBean" />
         </list>
     </property>
  
     <property name="triggers">
         <list>
             <ref bean="updateFlightsQuartTrigger" />
-            <!-- ref bean="checkStatusQuartTrigger" /-->
+            <ref bean="checkStatusQuartzTrigger" />
         </list>
     </property>
 </bean>
