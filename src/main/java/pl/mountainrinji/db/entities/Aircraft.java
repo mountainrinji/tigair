@@ -97,6 +97,11 @@ public class Aircraft implements Serializable {
 	@Column(name="show_source") 
 	private Boolean showSource;
 	
+	@Column(name="summary_date")
+	private String summaryDate;
+	
+	@Column(name="summary_recipients")
+	private String summaryRecipients;
 	
 	
 	
@@ -350,6 +355,32 @@ public class Aircraft implements Serializable {
 	public void setPropellerTimeSinceOverhaul(String propellerTimeSinceOverhaul) {
 		this.propellerTimeSinceOverhaul = propellerTimeSinceOverhaul;
 	}
+
+	
+	
+	public String getSummaryDate() {
+		return summaryDate;
+	}
+
+
+
+	public void setSummaryDate(String summaryDate) {
+		this.summaryDate = summaryDate;
+	}
+
+
+
+	public String getSummaryRecipients() {
+		return summaryRecipients;
+	}
+
+
+
+	public void setSummaryRecipients(String summaryRecipients) {
+		this.summaryRecipients = summaryRecipients;
+	}
+
+
 
 	public AircraftActivityStatus addAircraftActivityStatus(AircraftActivityStatus aircraftActivityStatus) {
 		getAircraftActivityStatuses().add(aircraftActivityStatus);

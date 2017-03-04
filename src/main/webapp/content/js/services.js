@@ -54,6 +54,19 @@ services.service('selectionService', function() {
     
   });
 
+/*services.factory('UserFactory', function ($resource) {
+	
+	var userFactoryAPI = {};
+	
+	userFactoryAPI.update = function () {	
+		return $resource('/tigair/rest/genericFacade/save', {}, {
+			update: { method: 'PUT', params: {id: '@id'} }
+		});
+	}
+	
+	return userFactoryAPI;
+});*/
+
 services.factory('UserFactory', function ($resource) {
     return $resource('/tigair/rest/genericFacade/save', {}, {
         update: { method: 'PUT', params: {id: '@id'} }

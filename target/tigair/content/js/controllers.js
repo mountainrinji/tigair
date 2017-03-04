@@ -79,6 +79,10 @@ controller('detailsController', function($scope, selectionService, UserFactory, 
     $scope.updateUser = function () {
        UserFactory.update($scope.selectedRecord);
     };
+    
+    $scope.test = function(clazz, method) {
+    	UserFactory.test(clazz, method);
+    };
 	
 });
 

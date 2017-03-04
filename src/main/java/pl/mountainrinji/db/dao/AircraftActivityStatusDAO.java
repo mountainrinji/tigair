@@ -93,6 +93,14 @@ public class AircraftActivityStatusDAO {
 	}
 	
 	@Transactional
+	public List<AircraftActivityStatus> getAllActivityStatusesForAircraft(Integer aircraftId) {
+		Criteria createCriteria = sessionFactory.getCurrentSession().createCriteria(AircraftActivityStatus.class);
+		createCriteria.add(Restrictions.eq("aircraftId", aircraftId));
+		List<AircraftActivityStatus> list = createCriteria.list();
+		return list;
+	}
+	
+	@Transactional
 	public String getAircraftActivitiesExecution(String registrationMark, String activityPart, String activityType) throws JSONException, JsonProcessingException {
 		Criteria createCriteria = sessionFactory.getCurrentSession().createCriteria(AircraftActivityStatus.class);
 		createCriteria.createAlias("activity", "activity");

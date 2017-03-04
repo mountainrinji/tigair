@@ -17,11 +17,13 @@ import javax.ws.rs.core.Response;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.hibernate.Session;
+import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import pl.mountainrinji.SummaryMailSender;
 import pl.mountainrinji.db.dao.AircraftActivityStatusDAO;
 import pl.mountainrinji.db.dao.AircraftDAO;
 import pl.mountainrinji.rest.displaydatas.AircraftActivitiesStatusResult;
@@ -35,7 +37,15 @@ public class GenericFacade {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Object update(AircraftActivitiesStatusResult object) throws ParseException {
-		
+		/*try {
+			((SummaryMailSender)ApplicationContextProvider.getApplicationContext().getBean(SummaryMailSender.class)).sendSummaryEmail();
+		} catch (BeansException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
         getAircraftActivityStatusDAO().save(object);
         return "";
     }

@@ -42,6 +42,13 @@ public class AircraftDAO {
 		return af;
 	}
 	
+	@Transactional
+	public List getAircraftsForSummaryDate(String day) throws JsonProcessingException {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Aircraft.class);
+		criteria.add(Restrictions.eq("summaryDate", day));
+		return criteria.list();
+	}
+	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public void updateAircraft(Aircraft a) {
 		sessionFactory.getCurrentSession().saveOrUpdate(a);

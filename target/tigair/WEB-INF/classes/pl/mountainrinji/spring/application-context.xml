@@ -27,7 +27,7 @@ http://www.springframework.org/schema/tx
       <props>
         <prop 
          key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-        <prop key="hibernate.show_sql">true</prop>
+        <prop key="hibernate.show_sql">false</prop>
         <prop key="connection_pool_size">1</prop>
 
         <prop key="hbm2ddl.auto">none</prop>
@@ -83,7 +83,7 @@ http://www.springframework.org/schema/tx
                 class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
 		
 		<property name="jobDetail" ref="checkStatusQuartzBean" />
-		<property name="repeatInterval" value="20000" />
+		<property name="repeatInterval" value="86400000" />
 		<property name="startDelay" value="1000" />
 		
 	</bean>

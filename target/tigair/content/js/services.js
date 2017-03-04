@@ -11,7 +11,7 @@ factory('activitiesService', function($http) {
     activitiesServiceAPI.getJavaActivitiesStatus = function() {
         return $http({
             method: 'GET', 
-            url: 'http://localhost:8080/tigair/rest/genericFacade/getJavaActivitiesStatus',
+            url: '/tigair/rest/genericFacade/getJavaActivitiesStatus',
             params: {activityId: "1"}
           });
       }
@@ -19,7 +19,7 @@ factory('activitiesService', function($http) {
     activitiesServiceAPI.getAircraftActivitiesExecution = function(regmark, activityPart, activityType) {
         return $http({
             method: 'GET', 
-            url: 'http://localhost:8080/tigair/rest/genericFacade/getAircraftActivitiesExecution',
+            url: '/tigair/rest/genericFacade/getAircraftActivitiesExecution',
             params: {regmark: regmark, activityPart: activityPart, activityType : activityType}
           });
       }
@@ -27,7 +27,7 @@ factory('activitiesService', function($http) {
     activitiesServiceAPI.getAircraftData = function(regmark) {
     	return $http({
     		method: 'GET',
-    		url: 'http://localhost:8080/tigair/rest/genericFacade/getAircraftData',
+    		url: '/tigair/rest/genericFacade/getAircraftData',
     		params: {regmark: regmark}
     	});
     }
@@ -53,6 +53,19 @@ services.service('selectionService', function() {
     	 }
     
   });
+
+/*services.factory('UserFactory', function ($resource) {
+	
+	var userFactoryAPI = {};
+	
+	userFactoryAPI.update = function () {	
+		return $resource('/tigair/rest/genericFacade/save', {}, {
+			update: { method: 'PUT', params: {id: '@id'} }
+		});
+	}
+	
+	return userFactoryAPI;
+});*/
 
 services.factory('UserFactory', function ($resource) {
     return $resource('/tigair/rest/genericFacade/save', {}, {
