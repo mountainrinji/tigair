@@ -63,7 +63,13 @@ TigairApp.config(function($translateProvider) {
 	    part_manufacturedYear: 'Year of manufacture: ',
 	    part_certificationType: 'Type certificate: ',
 	    part_timeSinceOH: 'Time since OH: ',
-	    part_totalTime: 'Total time: '
+	    part_totalTime: 'Total time: ',
+	    
+
+	    activityStatusTable_activityPart: 'Section',
+	    activityPart_A: 'Airframe',
+	    activityPart_E: 'Engine',
+	    activityPart_P: 'Propeller'
   })
   .translations('pl', {
 	aircraftdata_statusObslugowy: 'STATUS OBSŁUGOWY SAMOLOTU',
@@ -128,7 +134,12 @@ TigairApp.config(function($translateProvider) {
     part_manufacturedYear: 'Rok produkcji: ',
     part_certificationType: 'Certyfikat typu: ',
     part_timeSinceOH: 'Nalot od naprawy głównej: ',
-    part_totalTime: 'Nalot całkowity: '
+    part_totalTime: 'Nalot całkowity: ',
+    
+    activityStatusTable_activityPart: 'Sekcja',
+    activityPart_A: 'Płatowiec',
+    activityPart_E: 'Silnik',
+    activityPart_P: 'Śmigło'
     	
   });
   

@@ -14,7 +14,14 @@ TigairApp.directive('activitiesExecutionTable', function (selectionService, $loc
 	    	$scope.go = function($item) {
 	    		selectionService.set($item);
 	    		//window.location=document.getElementById('details').click();
-	    		};	
+	    		};
+	    	$scope.update = function($item) {
+	    		selectionService.update($item);
+	    	}
+	    	
+	    	$scope.isSelected = function($item) {
+	    		  return selectionService.indexOf($item) >= 0;
+	    		};
 	    }
 	};
 });

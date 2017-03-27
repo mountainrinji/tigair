@@ -35,27 +35,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 // public static final String REMEMBER_ME_KEY = "rememberme_key";
 //
-// @Autowired
-// private RestUnauthorizedEntryPoint restAuthenticationEntryPoint;
+ @Autowired
+ private RestUnauthorizedEntryPoint restAuthenticationEntryPoint;
 // 
-// @Autowired
-// private UserDetailsService userDetailsService;
+@Autowired
+private UserDetailsService userDetailsService;
 // 
-// @Autowired
-// private RestAccessDeniedHandler restAccessDeniedHandler;
+ @Autowired
+ private RestAccessDeniedHandler restAccessDeniedHandler;
 // 
-// @Autowired
-// private RestAuthenticationSuccessHandler restAuthenticationSuccessHandler;
+ @Autowired
+ private RestAuthenticationSuccessHandler restAuthenticationSuccessHandler;
 // 
-// @Autowired
-// private RestAuthenticationFailureHandler restAuthenticationFailureHandler;
+ @Autowired
+ private RestAuthenticationFailureHandler restAuthenticationFailureHandler;
 //
 // // Autowire other required beans 
 //
-// @Autowired
-// public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//  auth.userDetailsService(userDetailsService);
-// }
+   @Autowired
+ public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+  auth.userDetailsService(userDetailsService);
+ }
 //
 // @Override
 // public void configure(WebSecurity web) throws Exception {
@@ -71,7 +71,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 	}
 	
-	@Override
+	/*@Override
 	@Bean
 		public org.springframework.security.core.userdetails.UserDetailsService userDetailsServiceBean() throws Exception {
 		List<UserDetails> users = new ArrayList<UserDetails>();
@@ -79,16 +79,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		roles.add(new Role());
 	    users.add(new User("test", "test", roles)) ;
 	    return new InMemoryUserDetailsManager(users);
-		}
+		}*/
 
+	
+	@Override
+	 public void configure(WebSecurity web) throws Exception {
+	  web.ignoring().antMatchers("/content/index.html", "/rest/**");
+	 }
  @Override
  protected void configure(HttpSecurity http) throws Exception {
-	 http
-		.authorizeRequests()
-			.anyRequest().authenticated()
-			.and()
-			.formLogin()
-			.and()
-		.httpBasic();
+//	 http
+//		.authorizeRequests()
+//			.anyRequest().authenticated()
+//			.and()
+//			.formLogin()
+//			.and()
+//		.httpBasic();
+	 
+	 http.authorizeRequests()
+	 ///.*foo\.htm\?parameter=value1.*
+	 	.regexMatchers(".*SP-DTQ.*").access("hasRole('SP_DTQ')")
+	 	.regexMatchers(".*PH-USA.*").access("hasRole('PH_USA')")
+	 	.regexMatchers(".*SP-FYZ.*").access("hasRole('SP_FYZ')")
+	 	.and()
+	 	.formLogin()
+	 	.and()
+	 	.httpBasic();
  }
 }

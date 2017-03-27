@@ -65,10 +65,10 @@
     </thead>
     <tbody>
       <tr ng-repeat="activityExecution in aircraftActivitiesExecution"  class="{{activityExecution.rowConfiguration.rowClass}}" style="cursor: pointer;">
-        <!-- td>
-         <input type="checkbox"/>
-        </td-->
-        <td ng-click="go(activityExecution)"> <a onclick="document.getElementById('details').scrollIntoView();" ui-sref=".about">{{activityExecution.aircraftActivityStatus.taskIdentifier}} </a></td>
+        <td>
+         <input type="checkbox" ng-click="update(activityExecution)" ng-checked="isSelected(activityExecution)"/>
+        </td>
+        <td ng-click="go(activityExecution)"> <a onclick="document.getElementById('details').scrollIntoView();" ui-sref="about">{{activityExecution.aircraftActivityStatus.taskIdentifier}} </a></td>
         <td>
           
           {{activityExecution.activity.root.activityName}}

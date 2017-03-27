@@ -15,7 +15,7 @@ var urlParams;
 
 
 angular.module('TigairApp.controllers', ['TigairApp.services', ]).
-controller('indexController', function($scope, activitiesService, $translate) {
+controller('indexController', function($scope, $state, activitiesService, $translate) {
 	
 	
 	$translate.use(urlParams['lang']);
@@ -62,6 +62,10 @@ controller('indexController', function($scope, activitiesService, $translate) {
     activitiesService.getAircraftActivitiesExecution(urlParams['regMark'], 'P', 'MAINT').success(function (response) {
 	
 	$scope.aircraftActivitiesExecutionPMAINT = response;
+	
+	$scope.copy = function () {
+		$state.go('copy');
+	};
 });
     
 });
@@ -86,10 +90,57 @@ controller('detailsController', function($scope, selectionService, UserFactory, 
 	
 });
 
-//angular.module('TigairApp.controllers', ['TigairApp.services', ]).
-//controller('detailsController', function($scope, $translate, selectionService) {
-//    
-//    alert('ad');
-//    
-//    
-//});
+angular.module('TigairApp.copyController', ['TigairApp.services', ]).
+controller('copyController', function($scope, selectionService, CopyFactory, $translate) {
+	
+	Object.defineProperty($scope, 'addedRecords', {
+        get: function() { return selectionService.getAddedRecords(); }
+        
+    });
+	
+	
+    $scope.copy = function () {
+    	var copyObject = {
+    		'addedRecords': $scope.addedRecords,
+    		'source' : 'SP-FYZ',
+    		'target' : 'SP-DTQ'
+    	
+    	};
+       CopyFactory.copy(copyObject);
+    };
+    
+	
+});
+
+angular.module('TigairApp.createController', ['TigairApp.services', ]).
+controller('createController', function($scope, $state, CreateFactory, $translate) {
+	$translate.use(urlParams['lang']);
+	
+    $scope.currentDate = new Date();
+    $scope.newRecord = {};
+    $scope.showSpecialInterval = false;
+    
+    $scope.activityTypes = [
+    	{'label' : 'actionType_overhaul', 'value' : 'O'},	
+    	{'label' : 'actionType_inspect', 'value' : 'I'},
+    	{'label' : 'actionType_replace', 'value' : 'R'},
+    	{'label' : 'actionType_lubricate', 'value' : 'L'},
+    	{'label' : 'actionType_clean', 'value' : 'C'},
+    	{'label' : 'actionType_oncondition', 'value' : 'S'},
+    	{'label' : 'actionType_renew', 'value' : 'N'},
+    	{'label' : 'actionType_test', 'value' : 'T'},
+    	{'label' : 'actionType_escalate', 'value' : 'E'}
+    ];
+    
+    $scope.activityParts = [
+        {'label' : 'activityPart_A', 'value' : 'A'},
+        {'label' : 'activityPart_E', 'value' : 'E'},
+        {'label' : 'activityPart_P', 'value' : 'P'}
+    ];
+    
+    $scope.createActivity = function () {
+        CreateFactory.post($scope.newRecord);
+     };
+	
+    
+});

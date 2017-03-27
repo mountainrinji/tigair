@@ -15,7 +15,7 @@ var urlParams;
 
 
 angular.module('TigairApp.controllers', ['TigairApp.services', ]).
-controller('indexController', function($scope, activitiesService, $translate) {
+controller('indexController', function($scope, $state, activitiesService, $translate) {
 	
 	
 	$translate.use(urlParams['lang']);
@@ -62,6 +62,10 @@ controller('indexController', function($scope, activitiesService, $translate) {
     activitiesService.getAircraftActivitiesExecution(urlParams['regMark'], 'P', 'MAINT').success(function (response) {
 	
 	$scope.aircraftActivitiesExecutionPMAINT = response;
+	
+	$scope.copy = function () {
+		$state.go('copy');
+	};
 });
     
 });
@@ -83,6 +87,32 @@ controller('detailsController', function($scope, selectionService, UserFactory, 
     $scope.test = function(clazz, method) {
     	UserFactory.test(clazz, method);
     };
+	
+});
+
+angular.module('TigairApp.copyController', ['TigairApp.services', ]).
+controller('copyController', function($scope, selectionService, CopyFactory, $translate) {
+	//$scope.selectedRecord = selectionService.selectedRecord;
+	
+	Object.defineProperty($scope, 'addedRecords', {
+        get: function() { return selectionService.getAddedRecords(); }
+        //set: function(val) { testService.count = val; },
+    });
+	
+	
+    $scope.copy = function () {
+    	var copyObject = {
+    		'addedRecords': $scope.addedRecords,
+    		'source' : 'SP-FYZ',
+    		'target' : 'SP-DTQ'
+    	
+    	};
+       CopyFactory.copy(copyObject);
+    };
+    
+    /*$scope.test = function(clazz, method) {
+    	UserFactory.test(clazz, method);
+    };*/
 	
 });
 

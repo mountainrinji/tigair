@@ -40,6 +40,9 @@ services.service('selectionService', function() {
 
     var selectedRecord;
     
+    var addedRecords = [];
+    var addedRecordsIds = [];
+    
     function set(data) {
     	selectedRecord = data;
     }
@@ -47,9 +50,30 @@ services.service('selectionService', function() {
     	  return selectedRecord;
     }
     
+    function update(data) {
+    	if (indexOf(data) >= 0) {
+    		addedRecords.splice(indexOf(data), 1);
+    		addedRecordsIds.splice(indexOf(data), 1);
+    	} else {
+    		addedRecords.push(data);
+    		addedRecordsIds.push(data.aircraftActivityStatus.taskIdentifier);
+    	}
+    }
+    
+    function getAddedRecords() {
+    	return addedRecords;
+    }
+    
+    function indexOf(data) {
+    	return addedRecordsIds.indexOf(data.aircraftActivityStatus.taskIdentifier);
+    }
+    
     return {
     	  set: set,
-    	  get: get
+    	  get: get,
+    	  update: update,
+    	  getAddedRecords: getAddedRecords,
+    	  indexOf: indexOf
     	 }
     
   });
@@ -70,5 +94,12 @@ services.service('selectionService', function() {
 services.factory('UserFactory', function ($resource) {
     return $resource('/tigair/rest/genericFacade/save', {}, {
         update: { method: 'PUT', params: {id: '@id'} }
-    })
+    });
+});
+
+
+services.factory('CopyFactory', function ($resource) {
+    return $resource('/tigair/rest/genericFacade/copy', {}, {
+        copy: { method: 'PUT', params: {id: '@id'} }
+    });
 });

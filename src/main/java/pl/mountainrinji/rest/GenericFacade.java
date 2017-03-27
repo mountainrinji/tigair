@@ -27,6 +27,7 @@ import pl.mountainrinji.SummaryMailSender;
 import pl.mountainrinji.db.dao.AircraftActivityStatusDAO;
 import pl.mountainrinji.db.dao.AircraftDAO;
 import pl.mountainrinji.rest.displaydatas.AircraftActivitiesStatusResult;
+import pl.mountainrinji.rest.displaydatas.CopyObject;
 import pl.mountainrinji.spring.ApplicationContextProvider;
 
 @Path("/genericFacade")
@@ -47,6 +48,25 @@ public class GenericFacade {
 			e.printStackTrace();
 		}*/
         getAircraftActivityStatusDAO().save(object);
+        return "";
+    }
+	
+	@POST
+    @Path("/create")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Object create(AircraftActivitiesStatusResult object) throws ParseException {
+		
+        //getAircraftActivityStatusDAO().save(object);
+        return "";
+    }
+	
+	@PUT
+    @Path("/copy")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
+    public String copy(CopyObject object) throws ParseException {
+		
         return "";
     }
 	

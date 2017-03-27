@@ -16,7 +16,51 @@ import org.springframework.stereotype.Component;
 public class UserDetailsService
 		implements org.springframework.security.core.userdetails.UserDetailsService {
 
+	
+	public class ROLE_PH_USA implements GrantedAuthority {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public String getAuthority() {
+			// TODO Auto-generated method stub
+			return "ROLE_PH_USA";
+		}
+			
+	}
+	
+	public class ROLE_SP_DTQ implements GrantedAuthority {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public String getAuthority() {
+			// TODO Auto-generated method stub
+			return "ROLE_SP_DTQ";
+		}
+			
+	}
+	
+	public class ROLE_SP_FYZ implements GrantedAuthority {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public String getAuthority() {
+			// TODO Auto-generated method stub
+			return "ROLE_SP_FYZ";
+		}
+			
+	}
+	
 	public UserDetails loadUserByUsername(String arg0) throws UsernameNotFoundException {
+		final String username = arg0;
 		return new UserDetails() {
 			
 			public boolean isEnabled() {
@@ -41,7 +85,7 @@ public class UserDetailsService
 			
 			public String getUsername() {
 				// TODO Auto-generated method stub
-				return "test";
+				return username;
 			}
 			
 			public String getPassword() {
@@ -50,7 +94,15 @@ public class UserDetailsService
 			}
 			
 			public Collection<? extends GrantedAuthority> getAuthorities() {
-				return new ArrayList<GrantedAuthority>();
+				List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
+				if (username.equals("usa")) {
+					roles.add(new ROLE_PH_USA());
+				} else if (username.equals("fyz")) {
+					roles.add(new ROLE_SP_FYZ());
+				} else {
+					roles.add(new ROLE_SP_DTQ());
+				}
+				return roles;
 			}
 		};
 	}
