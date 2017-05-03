@@ -1,0 +1,74 @@
+
+<h1>Create screen</h1>
+
+<!-- {{'activityStatusTable_activityName' | translate }} <input type="text".
+			ng-model="newRecord.aircraftActivityStatus.root.activity.actionType"/>
+	-->	
+<form name="createForm">
+
+<table>
+<tr>
+    <td> {{'activityStatusTable_activityPart' | translate }} </td>
+    <td> 
+    <select name="activityPart" ng-model="newRecord.aircraftActivityStatus.root.activity.activityPart" ng-options="item.value as item.label | translate for item in activityParts" required>
+      <!-- option ng-repeat="item in activityParts" ng-value="item.value"> {{item.label | translate}} </option-->
+      
+    </select>
+    
+    
+    </td>
+  </tr>
+  <tr>
+    <td> {{'activityStatusTable_activityName' | translate }} </td>
+    <td> <input type="text" ng-model="newRecord.aircraftActivityStatus.root.activity.activityName" ng-required="true" /></td>
+  </tr>
+  <tr>
+    <td> {{'activityStatusTable_activityType' | translate }} </td>
+    <td> 
+    <select name="singleSelect" ng-model="newRecord.aircraftActivityStatus.root.activity.actionType">
+      <option ng-repeat="item in activityTypes" ng-value="item.value"> {{item.label | translate}} </option>
+    </select><br>
+    
+    </td>
+  </tr>
+  <tr>
+    <td> {{'activityStatusTable_source' | translate }} </td>
+    <td> <input type="text" ng-model="newRecord.aircraftActivityStatus.root.activity.source" /></td>
+  </tr>
+  <tr>
+    <td> {{'activityStatusTable_description' | translate }} </td>
+    <td> <input type="text" ng-model="newRecord.aircraftActivityStatus.root.activity.description" /></td>
+  </tr>
+  <tr>
+    <td> {{'activityStatusTable_maintInstruction' | translate }} </td>
+    <td> <input type="text" ng-model="newRecord.aircraftActivityStatus.root.activity.maintenanceInstruction" /></td>
+  </tr>
+  <tr>
+    <td> {{'activityStatusTable_maintReference' | translate }} </td>
+    <td> <input type="text" ng-model="newRecord.aircraftActivityStatus.root.activity.maintenanceInstructionRef" /></td>
+  </tr>
+  <tr ng-show="!showSpecialInterval">
+    <td> {{'activityStatusTable_hoursInterval' | translate }} </td>
+    <td> <input type="text" ng-model="newRecord.aircraftActivityStatus.root.activity.hoursInterval" /></td>
+  </tr>
+  <tr ng-show="!showSpecialInterval">
+    <td> {{'activityStatusTable_calendarInterval' | translate }} </td>
+    <td> <input type="text" ng-model="newRecord.aircraftActivityStatus.root.activity.calendarInterval" /></td>
+  </tr>
+  <tr ng-show="!showSpecialInterval">
+    <td> {{'activityStatusTable_cyclesInterval' | translate }} </td>
+    <td> <input type="text" ng-model="newRecord.aircraftActivityStatus.root.activity.cyclesInterval" /></td>
+  </tr>
+  <tr>
+    <td> 
+    <input type="checkbox" ng-model="showSpecialInterval"/>
+    {{'activityStatusTable_specialInterval' | translate }} </td>
+    <td> <textarea ng-show="showSpecialInterval"  ng-model="newRecord.aircraftActivityStatus.root.activity.specialInterval" > </textarea></td>
+  </tr>
+      
+</table>
+<br>
+<br>
+<input   type="submit" ng-click="createActivity(newRecord)" value="Save" />
+</form>
+

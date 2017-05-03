@@ -92,11 +92,10 @@ controller('detailsController', function($scope, selectionService, UserFactory, 
 
 angular.module('TigairApp.copyController', ['TigairApp.services', ]).
 controller('copyController', function($scope, selectionService, CopyFactory, $translate) {
-	//$scope.selectedRecord = selectionService.selectedRecord;
 	
 	Object.defineProperty($scope, 'addedRecords', {
         get: function() { return selectionService.getAddedRecords(); }
-        //set: function(val) { testService.count = val; },
+        
     });
 	
 	
@@ -110,16 +109,38 @@ controller('copyController', function($scope, selectionService, CopyFactory, $tr
        CopyFactory.copy(copyObject);
     };
     
-    /*$scope.test = function(clazz, method) {
-    	UserFactory.test(clazz, method);
-    };*/
 	
 });
 
-//angular.module('TigairApp.controllers', ['TigairApp.services', ]).
-//controller('detailsController', function($scope, $translate, selectionService) {
-//    
-//    alert('ad');
-//    
-//    
-//});
+angular.module('TigairApp.createController', ['TigairApp.services', ]).
+controller('createController', function($scope, $state, CreateFactory, $translate) {
+	$translate.use(urlParams['lang']);
+	
+    $scope.currentDate = new Date();
+    $scope.newRecord = {};
+    $scope.showSpecialInterval = false;
+    
+    $scope.activityTypes = [
+    	{'label' : 'actionType_overhaul', 'value' : 'O'},	
+    	{'label' : 'actionType_inspect', 'value' : 'I'},
+    	{'label' : 'actionType_replace', 'value' : 'R'},
+    	{'label' : 'actionType_lubricate', 'value' : 'L'},
+    	{'label' : 'actionType_clean', 'value' : 'C'},
+    	{'label' : 'actionType_oncondition', 'value' : 'S'},
+    	{'label' : 'actionType_renew', 'value' : 'N'},
+    	{'label' : 'actionType_test', 'value' : 'T'},
+    	{'label' : 'actionType_escalate', 'value' : 'E'}
+    ];
+    
+    $scope.activityParts = [
+        {'label' : 'activityPart_A', 'value' : 'A'},
+        {'label' : 'activityPart_E', 'value' : 'E'},
+        {'label' : 'activityPart_P', 'value' : 'P'}
+    ];
+    
+    $scope.createActivity = function () {
+        CreateFactory.post($scope.newRecord);
+     };
+	
+    
+});

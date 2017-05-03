@@ -103,3 +103,10 @@ services.factory('CopyFactory', function ($resource) {
         copy: { method: 'PUT', params: {id: '@id'} }
     });
 });
+
+services.factory('CreateFactory', function ($resource) {
+    return $resource('/tigair/rest/genericFacade/create', {}, {
+        post: { method: 'POST', params: {id: '@id'} }
+    });
+});
+

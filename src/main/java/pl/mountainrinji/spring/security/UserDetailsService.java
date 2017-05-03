@@ -59,6 +59,20 @@ public class UserDetailsService
 			
 	}
 	
+	public class ROLE_SP_FRA implements GrantedAuthority {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public String getAuthority() {
+			// TODO Auto-generated method stub
+			return "ROLE_SP_FRA";
+		}
+			
+	}
+	
 	public UserDetails loadUserByUsername(String arg0) throws UsernameNotFoundException {
 		final String username = arg0;
 		return new UserDetails() {
@@ -99,6 +113,8 @@ public class UserDetailsService
 					roles.add(new ROLE_PH_USA());
 				} else if (username.equals("fyz")) {
 					roles.add(new ROLE_SP_FYZ());
+				} else if (username.equals("fra")) {
+					roles.add(new ROLE_SP_FRA());
 				} else {
 					roles.add(new ROLE_SP_DTQ());
 				}

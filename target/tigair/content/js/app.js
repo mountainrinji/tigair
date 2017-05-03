@@ -1,4 +1,4 @@
-var TigairApp = angular.module('TigairApp', ['TigairApp.controllers', 'TigairApp.detailsController', 'TigairApp.copyController', 'TigairApp.services', 'pascalprecht.translate', 'ui.router', 'ngResource']);
+var TigairApp = angular.module('TigairApp', ['TigairApp.controllers', 'TigairApp.detailsController', 'TigairApp.copyController', 'TigairApp.createController', 'TigairApp.services', 'pascalprecht.translate', 'ui.router', 'ngResource']);
 
 TigairApp.config(function($stateProvider, $urlRouterProvider) {
     
