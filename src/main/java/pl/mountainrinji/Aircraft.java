@@ -2,6 +2,7 @@ package pl.mountainrinji;
 
 public enum Aircraft {
 	
+	SPKRM ("SP-KRM", 4),
 	SPFRA ("SP-FRA", 4),
 	SPFYZ ("SP-FYZ", 3),
 	PHUSA ("PH-USA", 2),

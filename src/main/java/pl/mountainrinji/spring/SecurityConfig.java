@@ -102,6 +102,7 @@ private UserDetailsService userDetailsService;
 	 	.regexMatchers(".*PH-USA.*").access("hasRole('PH_USA')")
 	 	.regexMatchers(".*SP-FYZ.*").access("hasRole('SP_FYZ')")
 	 	.regexMatchers(".*SP-FRA.*").access("hasRole('SP_FRA')")
+	 	.regexMatchers(".*SP-KRM.*").access("hasRole('SP_KRM')")
 	 	.and()
 	 	.formLogin()
 	 	.and()
